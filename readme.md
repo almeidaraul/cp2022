@@ -2,24 +2,23 @@
 Studying for the ICPC in 2022, after some good 10 months of no CP
 
 # Repository
-This repository copies a lot of stuff from
+The LaTeX-related stuff (header, code) was heavily based/slightly copied off of 
 [Bruno Maletta's Biblioteca](https://github.com/brunomaletta/Biblioteca)
-and also some things from [Bruno Tissei's Algorithms](https://gitlab.c3sl.ufpr.br/bft15/algorithms)
 
 - Dependencies: `texlive-{latex-base, latex-recommended, formats-extra, luatex}`
-- Under `notebook`, run `bash getlatex.sh` to generate PDF files (notebook, theoretical summary, etc)
+- Under `notebook`, run `getlatex.sh` to generate PDF files (notebook, theoretical summary, etc)
 - Compiling:
 	- `c`: g++17
 	- `c14`: g++14
 	- `p3`: pypy3
-- `tp FILE`: generate `FILE.cpp` in working directory from `misc/environment/template.cpp`
+- `tp FILE`: generate `FILE.cpp` in working directory from `code/extra/template.cpp`
 - `clip FILE`: copy `A.cpp` (macro for `cat A.cpp | clip.exe` - WSL-intended)
 
 # Resources
 - Notebooks from other people
   - [KACTL's notebook](https://github.com/kth-competitive-programming/kactl/blob/main/kactl.pdf)
-  - [ITA's Macacário](https://www.overleaf.com/project/5c34f0a7365e7c08d7483eef)
-  - [Humuhumunukunukuapua'a's Biblioteca](https://github.com/brunomaletta/Biblioteca) (includes theoretical guide)
+  - [ITA's notebook (Macacário)](https://www.overleaf.com/project/5c34f0a7365e7c08d7483eef)
+  - [Humuhumunukunukuapua'a's notebook](https://github.com/brunomaletta/Biblioteca) (includes theoretical guide)
 - Codeforces blogs
 	- [I compiled a list of almost all useful blogs ever published on Codeforces](https://codeforces.com/blog/entry/91363)
 	- [Tutorial and tips to reach Expert.](https://codeforces.com/blog/entry/81882)
