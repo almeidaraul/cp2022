@@ -1,0 +1,54 @@
+\documentclass[12pt, a4paper, twoside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\usepackage{comment}
+\usepackage{datetime}
+\usepackage[pdfusetitle]{hyperref}
+\usepackage[all]{xy}
+\usepackage{graphicx}
+% \addtolength{\parskip}{.5\baselineskip}
+
+\usepackage{listings} 
+\usepackage{color}
+\usepackage{titlesec}
+%\usepackage[landscape, left=1cm, right=1cm, top=1cm, bottom=2cm]{geometry}
+\usepackage[portrait, left=0.75cm, right=0.75cm, top=1cm, bottom=2cm]{geometry}
+
+\definecolor{gray}{rgb}{0.4, 0.4, 0.4}
+\setlength{\columnseprule}{0.2pt}
+\setlength{\columnsep}{30pt}
+
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+
+
+\lstset{
+breaklines=true,
+keywordstyle=\color{blue},
+commentstyle=\color{gray},
+basicstyle=\footnotesize,
+breakatwhitespace=true,
+language=C++,
+%frame=single,
+numbers=left,
+numberstyle=\ttfamily\tiny,
+numbersep=5pt,
+rulecolor=\color{black},
+showstringspaces=false
+stringstyle=\color{blue},
+tabsize=4,
+basicstyle=\ttfamily\scriptsize,
+literate={~} {$\sim$}{1}
+}
+
+\title{Competitive Programming Notebook}
+\author{Raul Almeida}
+
+
+\begin{document}
+\twocolumn
+\date{}
+\maketitle
+
+\tableofcontents
