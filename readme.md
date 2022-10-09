@@ -1,5 +1,5 @@
 # Competitive Programming stuff - 2022 version
-Studying for the ICPC in 2021, after some good 10 months of no CP
+Studying for the ICPC in 2022, after some good 10 months of no CP
 
 # Repository
 This repository copies a lot of stuff from
