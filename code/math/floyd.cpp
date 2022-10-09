@@ -1,8 +1,4 @@
 // Floyd's algorithm cycle-finding
-// Slow and fast (tortoise and hare)
-//
-// Time: O(V)
-// Space: O(1)
 // Status: not tested
 // Source: CPHB (p. 156)
 

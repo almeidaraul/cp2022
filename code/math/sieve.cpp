@@ -1,6 +1,4 @@
 // Sieve of Eratosthenes
-// Time: O(n log log n)
-// Space: O(n)
 // Status: not tested
 
 bitset<11234567> pr;

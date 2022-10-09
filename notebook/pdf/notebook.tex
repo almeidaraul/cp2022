@@ -61,10 +61,6 @@ literate={~} {$\sim$}{1}
 
 \subsection{Prim MST}
 \begin{lstlisting}
-// take smallest edge that leads to vertex v
-//
-// Time: O(E log V)
-// Space: O(V + E)
 // Status: tested (UVA10048)
 
 vector<vector<pair<int, int>> adj(M), mst(M);
@@ -104,9 +100,6 @@ void run(int n) {
 
 \subsection{Dijkstra SSSP}
 \begin{lstlisting}
-// Time: O((V+E) log V)
-// Space: O(V^2)
-//
 // Status: tested (CF20C)
 
 using ii = pair<int, int>;
@@ -135,11 +128,7 @@ void dijkstra(int s) {
 
 \subsection{Graph Check}
 \begin{lstlisting}
-// Check for tree edges, back edges and forward edges
-//
 // Usage: graphCheck(firstVertex, -1) (p stands for parent)
-// Time: O(V + E)
-// Space: O(V + E)
 
 int UNVISITED = -1, EXPLORED = 0, VISITED = 1;
 vector<vector<int>> adj(M);
@@ -165,13 +154,7 @@ void graphCheck(int v, int p) { //vertex, parent
 
 \subsection{Articulations and Bridges}
 \begin{lstlisting}
-// Articulation point v: if you remove vertex v, then the connected component to which it belongs becomes disconnected
-// Bridge u,v: if you remove the edge u->v, then you can't reach v from u
-//
 // Usage: dfs(source, -1)
-//
-// Time: O(V + E)
-// Space: O(V + E)
 // Status: not tested
 
 int tk = 0;
@@ -200,18 +183,7 @@ void dfs(int v, int p) {
 
 \subsection{Euler Tour}
 \begin{lstlisting}
-// Find the closest neighbor that has a path back to the current vertex to build an euler tour
-//
-// Euler path: visits each edge once
-// Tour/cycle/circuit: euler path that starts and ends at same node
-//
-// Undirected and has path: every vertex has even degree or two have odd degree
-// Undirected and has circuit: every vertex has even degree
-// Directed and has path: indeg[i]-outdeg[i] == 1 for at most one i, -1 for at most one i, 0 for all other i
-// Directed and has circuit: indeg[i] == outdeg[i] for every i
-//
 // Usage: tour(cyc.begin(), start\_vertex)
-// Time: O(E^2)
 // Status: not tested
 // Source: CP3 (pg. 205)
 
@@ -237,9 +209,6 @@ void tour(list<int>::iterator i, int v) {
 
 \subsection{Kahn's topological sort}
 \begin{lstlisting}
-// particular order (alphabetical)
-// Time: O(VE)
-// Space: O(V+E)
 // Status: tested (UVA11060)
 
 vector<vector<int>> adj(M);
@@ -269,9 +238,6 @@ void kahn(int n) {
 
 \subsection{Max Cardinality Bipartite Matching}
 \begin{lstlisting}
-// Jump from free to matched edges until you've used them all
-//
-// Time: O(VE)
 // Status: not tested
 // Source: CP3 (pg. 209)
 
@@ -302,10 +268,6 @@ for (int v = 0; v < ls; ++v) {//ls = size of the left set
 
 \subsection{Lowest Common Ancestor}
 \begin{lstlisting}
-// Binary lift to binary search the LCA or euler path
-//
-// Time: O(N log N)
-// Space: O(N log N)
 // Status: not tested
 
 //--- binary lifting
@@ -364,11 +326,7 @@ int lca(int v, int u) {
 
 \subsection{Tarjan Strongly Connected Component}
 \begin{lstlisting}
-// A node can reach any other node in its own SCC (DFS+stack)
-//
 // Usage: Tarjan(N, adj)
-// Time: O(V + E)
-// Space: O(V + E)
 // Status: tested (UVA247, UVA11838)
 
 vector<int> tin(M, -1), low(M, -1);
@@ -396,10 +354,7 @@ void dfs(int v) {
 
 \subsection{Bellman-Ford SSSP}
 \begin{lstlisting}
-// Time: O(VE)
-// Space: O(V + E)
 // Status: tested (UVA1112, UVA10449)
-
 const int inf = 0x3f3f3f3f;
 vector<vector<pair<int, int>>> adj(M);
 vector<int> dist(M, inf);
@@ -423,20 +378,7 @@ bool cycle(int n) {
 
 \subsection{Kruskal MST}
 \begin{lstlisting}
-// order edges by increasing weight, then use a MUF to know if each edge is useful (if it connects two previously disconnected vertices)
-//
-// Min Span Subgraph: previously process fixed edges
-//
-// Min Span Forest: count number of sets on the MUF
-//
-// 2nd Best MST: run kruskal; for each chosen edge, flag it as unavailable and run it without using that edge ($O(VE)$)
-//
-// Minimax: max edge weight on the MST (maximin: min)
-//
 // Usage: Kruskal(V, E, edges) (weighted edges)
-//
-// Time: O(E log V)
-// Space: O(V + E)
 // Status: tested (UVA1174)
 
 using iii = pair<int, pair<int, int>>; //weight, two vertices
@@ -460,18 +402,6 @@ int kruskal() {
 
 \subsection{Edmond Karp MaxFlow}
 \begin{lstlisting}
-// Ford-Fulkerson's method with BFS = O(VE) BFS calls, O(E) per BFS
-//
-// Vertex weights: if vertex V has a weight, create Vin (receives all in-edges of V and has an edge to Vout) and Vout(receives an edge from Vin and has all out-edges of V); Vin-Vout has the weight from V
-//
-// MinCut: run EdmondKarp, S-T sets are: all V that you can reach from the source with edges of positive residual capacity and all other V
-//
-// MultiSource/MultiSink: create a super source with infinite capacity pointing to all sources, analogous for sinks
-//
-// Max Cardinality Bipartite Matching: use capacity 1 on all edges and apply the multi-source and multi-sink strategies
-//
-// Time: O(VE^2)
-// Space: O(V + E)
 // Status: tested (CSES1694, CSES1695)
 
 vector<vector<int>> capacity(M, vector<int>(M, 0)), adj(M);
@@ -538,21 +468,7 @@ void mincut(int s, int t) {
 
 \subsection{Floyd Warshall APSP}
 \begin{lstlisting}
-// Also works for SSSP (V <= 400)
-//
-// Printing path: p[i][j] set to i (last node that appears before j on the path), then p[i][j] = p[k][j] on update.
-//
-// Transitive Closure: weight is boolean (init as 1 if there's an edge), update with bitwise OR
-//
-// Minimax/Maximin: w[i][j] = min(w[i][j], max(w[i][k], w[k][j]))
-//
-// Finding negative/cheapest cycle: init w[i][i] = inf; run(); any w[i][i] != inf is a cycle and the smallest is the cheapest; any w[i][i] < 0 is negative
-//
-// This can also be used for finding SCCs (check with transitive closure)
-//
 // Usage: FloydWarshall(n, edges)
-// Time: O(V^3+E)
-// Space: O(V^2+E)
 // Status: tested (UVA821, UVA1056)
 
 struct edge { int v, u, w; };
@@ -580,8 +496,6 @@ void floydWarshall(int n) {
 
 \subsection{Sieve of Eratosthenes}
 \begin{lstlisting}
-// Time: O(n log log n)
-// Space: O(n)
 // Status: not tested
 
 bitset<11234567> pr;
@@ -612,8 +526,6 @@ bool isPrime(int n) {
 
 \subsection{Prime Factors w/ Optimized Trial Divisions}
 \begin{lstlisting}
-// Time: O(Pi(sqrt(n)))
-// Space: O(n)
 // Status: not tested
 // Source: CP3 (pg. 238)
 
@@ -636,7 +548,6 @@ void pf(int n) {
 
 \subsection{Extended Euclid for solving Linear Diophantine Equations}
 \begin{lstlisting}
-// Time: O(log min(a, b))
 // Status: not tested
 // Source: CP3 (pg. 242)
 
@@ -665,10 +576,6 @@ void solve(int a, int b, int c, int i) { //i solutions
 
 \subsection{Floyd's algorithm cycle-finding}
 \begin{lstlisting}
-// Slow and fast (tortoise and hare)
-//
-// Time: O(V)
-// Space: O(1)
 // Status: not tested
 // Source: CPHB (p. 156)
 
@@ -704,9 +611,6 @@ int findCycle(int x) {
 
 \subsection{Coordinate Compression}
 \begin{lstlisting}
-// normalize vector access; can also be done with map/set but high constant
-//
-// Time: O(N log N)
 // Status: not tested
 // Source: GEMA ICMC (YouTube)
 
@@ -722,8 +626,6 @@ for (int i = 0; i < n; ++i) {
 
 \subsection{128 Bit Integers}
 \begin{lstlisting}
-// GCC extension; 2^127 -1 ~ 10^38
-//
 // Status: not tested
 // Source: GEMA (YouTube)
 
@@ -749,9 +651,6 @@ istream& operator>>(istream& in, __int128& x) {
 
 \subsection{Binary Search (but beautiful)}
 \begin{lstlisting}
-// binary steps
-//
-// Time: O(log N)
 // Status: not tested
 // Source: CPHB
 
@@ -765,7 +664,7 @@ while (l <= r) {
 	else l = m+1;
 }
 
-// nice
+// nice - binary steps
 int k = 0;
 for (int b = n/2; b > 0; b /= 2)
 	while (k+b < n && array[k+b] <= x)
@@ -783,9 +682,6 @@ if (array[k] == x)
 
 \subsection{Prefix Function (KMP)}
 \begin{lstlisting}
-//
-// to find ocurrences of s in t, use the string s+%+t, then look for pi[i] = s.length() on the "t side"
-// Time: O(N)
 // Status: not tested
 // Source: CP-Algorithms
 
@@ -813,10 +709,7 @@ vector<int> prefix(string s) {
 
 \subsection{Merge/Disjoint Union-Find}
 \begin{lstlisting}
-//
 // Usage: UnionFind(N);
-// Time: O(AM), ackerman * num_operations
-// Space: O(N), elements
 // Status: tested (UVA11503)
 
 struct UnionFind {
@@ -853,12 +746,8 @@ struct UnionFind {
 
 \subsection{Bottom-Up Segment Tree}
 \begin{lstlisting}
-//
 // Usage: SegTree(N);
-//
 // Source: CP Handbook
-// Time: O(log N)
-// Space: O(N), elements
 // Status: not tested
 
 struct SegTree {
@@ -892,7 +781,6 @@ struct SegTree {
 
 \subsection{Segment Tree}
 \begin{lstlisting}
-//
 // Usage: SegTree(N)
 
 struct SegTree {

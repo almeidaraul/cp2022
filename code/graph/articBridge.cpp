@@ -1,11 +1,5 @@
 // Articulations and Bridges
-// Articulation point v: if you remove vertex v, then the connected component to which it belongs becomes disconnected
-// Bridge u,v: if you remove the edge u->v, then you can't reach v from u
-//
 // Usage: dfs(source, -1)
-//
-// Time: O(V + E)
-// Space: O(V + E)
 // Status: not tested
 
 int tk = 0;

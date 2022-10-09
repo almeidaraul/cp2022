@@ -1,19 +1,5 @@
 // Floyd Warshall APSP
-// Also works for SSSP (V <= 400)
-//		
-// Printing path: p[i][j] set to i (last node that appears before j on the path), then p[i][j] = p[k][j] on update.
-//
-// Transitive Closure: weight is boolean (init as 1 if there's an edge), update with bitwise OR
-//
-// Minimax/Maximin: w[i][j] = min(w[i][j], max(w[i][k], w[k][j]))
-//
-// Finding negative/cheapest cycle: init w[i][i] = inf; run(); any w[i][i] != inf is a cycle and the smallest is the cheapest; any w[i][i] < 0 is negative
-//
-// This can also be used for finding SCCs (check with transitive closure)
-//
 // Usage: FloydWarshall(n, edges)
-// Time: O(V^3+E)
-// Space: O(V^2+E)
 // Status: tested (UVA821, UVA1056)
 
 struct edge { int v, u, w; };

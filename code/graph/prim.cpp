@@ -1,8 +1,4 @@
 // Prim MST
-// take smallest edge that leads to vertex v
-//	
-// Time: O(E log V)
-// Space: O(V + E)
 // Status: tested (UVA10048)
 
 vector<vector<pair<int, int>> adj(M), mst(M);

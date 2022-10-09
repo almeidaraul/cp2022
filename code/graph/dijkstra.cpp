@@ -1,7 +1,4 @@
 // Dijkstra SSSP
-// Time: O((V+E) log V)
-// Space: O(V^2)
-//
 // Status: tested (CF20C)
 
 using ii = pair<int, int>;

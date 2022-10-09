@@ -1,9 +1,5 @@
 // Graph Check
-// Check for tree edges, back edges and forward edges
-//
 // Usage: graphCheck(firstVertex, -1) (p stands for parent)
-// Time: O(V + E)
-// Space: O(V + E)
 
 int UNVISITED = -1, EXPLORED = 0, VISITED = 1;
 vector<vector<int>> adj(M);

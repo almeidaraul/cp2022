@@ -1,8 +1,4 @@
 // Lowest Common Ancestor
-// Binary lift to binary search the LCA or euler path
-//
-// Time: O(N log N)
-// Space: O(N log N)
 // Status: not tested
 
 //--- binary lifting

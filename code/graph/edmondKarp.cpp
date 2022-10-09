@@ -1,16 +1,4 @@
 // Edmond Karp MaxFlow
-// Ford-Fulkerson's method with BFS = O(VE) BFS calls, O(E) per BFS
-//
-// Vertex weights: if vertex V has a weight, create Vin (receives all in-edges of V and has an edge to Vout) and Vout(receives an edge from Vin and has all out-edges of V); Vin-Vout has the weight from V
-//
-// MinCut: run EdmondKarp, S-T sets are: all V that you can reach from the source with edges of positive residual capacity and all other V
-//
-// MultiSource/MultiSink: create a super source with infinite capacity pointing to all sources, analogous for sinks
-//
-// Max Cardinality Bipartite Matching: use capacity 1 on all edges and apply the multi-source and multi-sink strategies
-// 
-// Time: O(VE^2)
-// Space: O(V + E)
 // Status: tested (CSES1694, CSES1695)
 
 vector<vector<int>> capacity(M, vector<int>(M, 0)), adj(M);

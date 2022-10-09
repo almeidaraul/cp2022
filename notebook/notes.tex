@@ -1,0 +1,199 @@
+\documentclass[12pt, a4paper, twoside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\usepackage{comment}
+\usepackage{datetime}
+\usepackage[pdfusetitle]{hyperref}
+\usepackage[all]{xy}
+\usepackage{graphicx}
+% \addtolength{\parskip}{.5\baselineskip}
+
+\usepackage{listings} 
+\usepackage{color}
+\usepackage{titlesec}
+%\usepackage[landscape, left=1cm, right=1cm, top=1cm, bottom=2cm]{geometry}
+\usepackage[portrait, left=0.75cm, right=0.75cm, top=1cm, bottom=2cm]{geometry}
+
+\definecolor{gray}{rgb}{0.4, 0.4, 0.4}
+\setlength{\columnseprule}{0.2pt}
+\setlength{\columnsep}{30pt}
+
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+
+
+\lstset{
+breaklines=true,
+keywordstyle=\color{blue},
+commentstyle=\color{gray},
+basicstyle=\footnotesize,
+breakatwhitespace=true,
+language=C++,
+%frame=single,
+numbers=left,
+numberstyle=\ttfamily\tiny,
+numbersep=5pt,
+rulecolor=\color{black},
+showstringspaces=false
+stringstyle=\color{blue},
+tabsize=4,
+basicstyle=\ttfamily\scriptsize,
+literate={~} {$\sim$}{1}
+}
+
+\title{Competitive Programming Notes}
+\author{Raul Almeida}
+
+
+\begin{document}
+\footnotesize
+\twocolumn
+\date{}
+\maketitle
+
+\tableofcontents
+
+\section{Algorithms}
+\begin{center}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{||c c c||}
+ \hline
+  Algorithm & Time & Space \\ [0.5ex]
+  \hline\hline
+  Articulations and Bridges & $\mathcal{O}(V+E)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Bellman-Ford & $\mathcal{O}(VE)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Dijksta & $\mathcal{O}((V+E) \log V)$ & $\mathcal{O}(V^2)$ \\
+  \hline
+  Edmond Karp & $\mathcal{O}(VE^2)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Euler Tour & $\mathcal{O}(E^2)$ & \\
+  \hline
+  Floyd Warshall & $\mathcal{O}(V^3+E)$ & $\mathcal{O}(V^2+E)$ \\
+  \hline
+  Graph Check & $\mathcal{O}(V+E)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Kahn & $\mathcal{O}(VE)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Kruskal & $\mathcal{O}(E \log V)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  LCA & $\mathcal{O}(N \log N)$ & $\mathcal{O}(N \log N)$ \\
+  \hline
+  MCBM & $\mathcal{O}(VE)$ & \\
+  \hline
+  Prim & $\mathcal{O}(E \log V)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Tarjan & $\mathcal{O}(V+E)$ & $\mathcal{O}(V+E)$ \\
+  \hline
+  Extended Euclid & $\mathcal{O}(\log \min(a, b))$ & $\mathcal{O}(1)$ \\
+  \hline
+  Floyd (cycle) & $\mathcal{O}(V)$ & $\mathcal{O}(1)$ \\
+  \hline
+  Prime Fac. w/ Opt. Trial Div. & $\mathcal{O}(\pi(\sqrt{n}))$ & $\mathcal{O}(n)$ \\
+  \hline
+  Sieve of Eratosthenes & $\mathcal{O}(n \log \log n)$ & $\mathcal{O}(n)$ \\
+  \hline
+  Binary Search & $\mathcal{O}(\log N)$ & \\
+  \hline
+  Coordinate Compression & $\mathcal{O}(N \log N)$ & \\
+  \hline
+  KMP & $\mathcal{O}(N)$ & \\
+  \hline
+  MUF & $\mathcal{O}(AM)$ & $\mathcal{O}(N)$ \\
+  \hline
+  Bottom-Up SegTree & $\mathcal{O}(\log N)$ & $\mathcal{O}(N)$ \\ [1ex]
+  \hline
+\end{tabular}
+}
+{\tiny $A$: Ackerman function}
+\end{center}
+
+\subsection{Graph}
+\subsubsection{Articulations and Bridges}
+If vertex $v$ is an \textbf{articulation point} and you remove it, the connected component to which it belongs becomes disconnected
+
+If edge $u,v$ is a \textbf{bridge} and you remove it, you can't reach $v$ from $u$
+
+\subsubsection{Edmond Karp MaxFlow}
+Ford-Fulkerson's method with BFS $\to$ $\mathcal{O}(VE)$ BFS calls, $\mathcal{O}(E)$ per BFS
+
+\textbf{Vertex weights:} if vertex $V$ has a weight, create $V_{in}$ (receives all in-edges of $V$ and has an edge to $V_{out}$) and $V_{out}$(receives an edge from $V_{in}$ and has all out-edges of $V$); edge $\{V_{in}, V_{out}\}$ has the weight from $V$
+
+\textbf{MinCut:} run EdmondKarp; $S-T$ sets are: all $V$ that you can reach from the source with edges of positive residual capacity and all other $V$
+
+\textbf{MultiSource/MultiSink:} create a super source with infinite capacity pointing to all sources, analogous for sinks
+
+\textbf{Max Cardinality Bipartite Matching:} use capacity 1 on all edges and apply the multi-source and multi-sink strategies
+
+\subsubsection{Euler Tour}
+Find the closest neighbor that has a path back to the current vertex to build an euler tour
+
+\textbf{Euler path:} visits each edge once
+
+\textbf{Tour/cycle/circuit} euler path that starts and ends at same node
+
+\textbf{Undirected and has path:} every vertex has even degree or two have odd degree
+
+\textbf{Undirected and has circuit:} every vertex has even degree
+
+\textbf{Directed and has path:} $\delta^{+}(v) - \delta^{-}(v) = 1$ for at most one $v$, $= -1$ for at most one $v$, $= 0$ for all other $v$
+
+\textbf{Directed and has circuit:} $\delta^{+}(v) = \delta^{-}(v) \forall v \in V$
+
+\subsubsection{Floyd Warshall}
+Also works for SSSP (V <= 400)
+
+\textbf{Printing path:} \textit{p[i][j]} set to \textit{i} (last node that appears before \textit{j} on the path), then \textit{p[i][j] = p[k][j]} on update.
+
+\textbf{Transitive Closure:} weight is boolean (init as \textit{1} if there's an edge), update with bitwise OR
+
+\textbf{Minimax/Maximin:} \textit{w[i][j] = min(w[i][j], max(w[i][k], w[k][j]))}
+
+\textbf{Finding negative/cheapest cycle:} init \textit{w[i][i] = inf}; \textit{run()}; any \textit{w[i][i] != inf} is a cycle and the smallest is the cheapest; any \textit{w[i][i] < 0} is negative cycle
+
+This can also be used for finding SCCs (check with transitive closure)
+
+\subsubsection{Kahn's Topological Sort}
+Particular order (alphabetical)
+
+\subsubsection{Kruskal}
+Order edges by increasing weight, then use a MUF to know if each edge is useful (if it connects two previously disconnected vertices)
+
+\textbf{Min Span Subgraph:} previously process fixed edges
+
+\textbf{Min Span Forest:} count number of sets on the MUF
+
+\textbf{2nd Best MST:} run kruskal; for each chosen edge, flag it as unavailable and run it without using that edge ($O(VE)$)
+
+\textbf{Minimax:} max edge weight on the MST (maximin: min)
+
+\subsubsection{Lowest Common Ancestor}
+Binary lift to binary search the LCA or Euler Path
+
+\subsubsection{Max Cardinality Bipartite Matching}
+Jump from free to matched edges until you've used them all
+
+\subsubsection{Prim's Algorithm}
+Take smallest edge that leads to vertex $v$
+
+\subsubsection{Tarjan}
+A node can reach any other node in its own SCC (DFS + stack)
+
+\subsection{Math}
+\subsubsection{Floyd}
+Slow and fast (tortoise and hare)
+
+\subsection{Paradigm}
+\subsubsection{Coordinate Compression}
+Normalize vector access; can also be done with map/set but high constant
+
+\subsubsection{128 Bit Integers}
+GCC extension; $2^{127} ~ 10^{38}$
+
+\subsection{String}
+\subsubsection{Prefix Function (KMP)}
+To find ocurrences of \textit{s} in \textit{t}, use the string \textit{s+\%+t}, then look for \textit{pi[i] = s.length()} on the "\textit{t} side"
+
+\end{document}

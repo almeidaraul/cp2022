@@ -7,6 +7,7 @@ This repository copies a lot of stuff from
 and also some things from [Bruno Tissei's Algorithms](https://gitlab.c3sl.ufpr.br/bft15/algorithms)
 
 - Dependencies: `texlive-{latex-base, latex-recommended, formats-extra, luatex}`
+- Under `notebook`, run `bash getlatex.sh` to generate PDF files (notebook, theoretical summary, etc)
 - Compiling:
 	- `c`: g++17
 	- `c14`: g++14

@@ -1,16 +1,5 @@
 // Euler Tour
-// Find the closest neighbor that has a path back to the current vertex to build an euler tour
-//
-// Euler path: visits each edge once
-// Tour/cycle/circuit: euler path that starts and ends at same node
-//
-// Undirected and has path: every vertex has even degree or two have odd degree
-// Undirected and has circuit: every vertex has even degree
-// Directed and has path: indeg[i]-outdeg[i] == 1 for at most one i, -1 for at most one i, 0 for all other i
-// Directed and has circuit: indeg[i] == outdeg[i] for every i
-//
 // Usage: tour(cyc.begin(), start\_vertex)
-// Time: O(E^2)
 // Status: not tested
 // Source: CP3 (pg. 205)
 

@@ -1,5 +1,4 @@
 // Segment Tree
-// 
 // Usage: SegTree(N)
 
 struct SegTree {

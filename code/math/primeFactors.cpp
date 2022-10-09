@@ -1,6 +1,4 @@
 // Prime Factors w/ Optimized Trial Divisions
-// Time: O(Pi(sqrt(n)))
-// Space: O(n)
 // Status: not tested
 // Source: CP3 (pg. 238)
 

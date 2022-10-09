@@ -1,9 +1,5 @@
 // Tarjan Strongly Connected Component
-// A node can reach any other node in its own SCC (DFS+stack)
-//
 // Usage: Tarjan(N, adj)
-// Time: O(V + E)
-// Space: O(V + E)
 // Status: tested (UVA247, UVA11838)
 
 vector<int> tin(M, -1), low(M, -1);

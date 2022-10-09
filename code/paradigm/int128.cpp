@@ -1,6 +1,4 @@
 // 128 Bit Integers
-// GCC extension; 2^127 -1 ~ 10^38
-//
 // Status: not tested
 // Source: GEMA (YouTube)
 

@@ -1,7 +1,4 @@
 // Max Cardinality Bipartite Matching
-// Jump from free to matched edges until you've used them all
-//
-// Time: O(VE)
 // Status: not tested
 // Source: CP3 (pg. 209)
 

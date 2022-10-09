@@ -1,7 +1,4 @@
 // Coordinate Compression
-// normalize vector access; can also be done with map/set but high constant
-//
-// Time: O(N log N)
 // Status: not tested
 // Source: GEMA ICMC (YouTube)
 

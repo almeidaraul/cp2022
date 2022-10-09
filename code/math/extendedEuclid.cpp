@@ -1,5 +1,4 @@
 // Extended Euclid for solving Linear Diophantine Equations
-// Time: O(log min(a, b))
 // Status: not tested
 // Source: CP3 (pg. 242)
 

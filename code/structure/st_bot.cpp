@@ -1,10 +1,6 @@
 // Bottom-Up Segment Tree
-// 
 // Usage: SegTree(N);
-//
 // Source: CP Handbook
-// Time: O(log N)
-// Space: O(N), elements
 // Status: not tested
 
 struct SegTree {

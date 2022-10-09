@@ -1,7 +1,4 @@
 // Prefix Function (KMP)
-// 
-// to find ocurrences of s in t, use the string s+%+t, then look for pi[i] = s.length() on the "t side"
-// Time: O(N)
 // Status: not tested
 // Source: CP-Algorithms
 

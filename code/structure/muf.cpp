@@ -1,8 +1,5 @@
 // Merge/Disjoint Union-Find
-// 
 // Usage: UnionFind(N);
-// Time: O(AM), ackerman * num_operations
-// Space: O(N), elements
 // Status: tested (UVA11503)
 
 struct UnionFind {

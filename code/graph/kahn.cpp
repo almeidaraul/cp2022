@@ -1,7 +1,4 @@
 // Kahn's topological sort
-// particular order (alphabetical)
-// Time: O(VE)
-// Space: O(V+E)
 // Status: tested (UVA11060)
 
 vector<vector<int>> adj(M);
