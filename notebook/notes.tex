@@ -145,13 +145,13 @@ Find the closest neighbor that has a path back to the current vertex to build an
 \subsubsection{Floyd Warshall}
 Also works for SSSP (V <= 400)
 
-\textbf{Printing path:} \textit{p[i][j]} set to \textit{i} (last node that appears before \textit{j} on the path), then \textit{p[i][j] = p[k][j]} on update.
+\textbf{Printing path:} \texttt{p[i][j]} set to \texttt{i} (last node that appears before \texttt{j} on the path), then \texttt{p[i][j] = p[k][j]} on update.
 
-\textbf{Transitive Closure:} weight is boolean (init as \textit{1} if there's an edge), update with bitwise OR
+\textbf{Transitive Closure:} weight is boolean (init as \texttt{1} if there's an edge), update with bitwise OR
 
-\textbf{Minimax/Maximin:} \textit{w[i][j] = min(w[i][j], max(w[i][k], w[k][j]))}
+\textbf{Minimax/Maximin:} \texttt{w[i][j]} will be \texttt{min(w[i][j], max(w[i][k], w[k][j]))}
 
-\textbf{Finding negative/cheapest cycle:} init \textit{w[i][i] = inf}; \textit{run()}; any \textit{w[i][i] != inf} is a cycle and the smallest is the cheapest; any \textit{w[i][i] < 0} is negative cycle
+\textbf{Finding negative/cheapest cycle:} init \texttt{w[i][i] = inf}; \texttt{run()}; any \texttt{w[i][i] != inf} is a cycle and the smallest is the cheapest; any \texttt{w[i][i] < 0} is negative cycle
 
 This can also be used for finding SCCs (check with transitive closure)
 
@@ -194,6 +194,6 @@ GCC extension; $2^{127} ~ 10^{38}$
 
 \subsection{String}
 \subsubsection{Prefix Function (KMP)}
-To find ocurrences of \textit{s} in \textit{t}, use the string \textit{s+\%+t}, then look for \textit{pi[i] = s.length()} on the "\textit{t} side"
+To find ocurrences of \texttt{s} in \texttt{t}, use the string \texttt{s+\%+t}, then look for \texttt{pi[i] = s.length()} on the "\texttt{t} side"
 
 \end{document}
