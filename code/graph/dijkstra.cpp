@@ -1,5 +1,6 @@
 // Dijkstra SSSP
 // Status: tested (CF20C)
+// O((V+E) log V) time, O(V^2) space
 
 using ii = pair<int, int>;
 const int inf = 0x3f3f3f3f;

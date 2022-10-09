@@ -2,6 +2,11 @@
 // Usage: SegTree(N);
 // Source: CP Handbook
 // Status: not tested
+// Complexity:
+//  build: O(n)
+//  query: O(log n)
+//  modify: O(log n)
+//  + uses less space than top-down 4n segtree (2n here)
 
 struct SegTree {
   unsigned int n;

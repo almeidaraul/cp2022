@@ -1,5 +1,6 @@
 // Kahn's topological sort
 // Status: tested (UVA11060)
+// O(VE) time, O(V+E) space
 
 vector<vector<int>> adj(M);
 vector<int> sorted;

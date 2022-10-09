@@ -1,5 +1,6 @@
 // Lowest Common Ancestor
 // Status: not tested
+// O(N log N) time, O(N log N) space
 
 //--- binary lifting
 int n, l = ceil(log2(n));

@@ -1,5 +1,6 @@
 // Graph Check
 // Usage: graphCheck(firstVertex, -1) (p stands for parent)
+// O(V+E) time & space
 
 int UNVISITED = -1, EXPLORED = 0, VISITED = 1;
 vector<vector<int>> adj(M);

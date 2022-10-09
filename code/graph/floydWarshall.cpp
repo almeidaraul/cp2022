@@ -1,6 +1,7 @@
 // Floyd Warshall APSP
 // Usage: FloydWarshall(n, edges)
 // Status: tested (UVA821, UVA1056)
+// O(V^3 + E) time, O(V^2 + E) space
 
 struct edge { int v, u, w; };
 const int inf = 0x3f3f3f3f;

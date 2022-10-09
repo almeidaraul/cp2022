@@ -1,5 +1,6 @@
 // Sieve of Eratosthenes
 // Status: not tested
+// O(n log log n) time, O(n) space
 
 bitset<11234567> pr;
 vector<int> factors(M, 0);

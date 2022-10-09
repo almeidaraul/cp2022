@@ -1,6 +1,7 @@
 // Extended Euclid for solving Linear Diophantine Equations
 // Status: not tested
 // Source: CP3 (pg. 242)
+// O(log min(a, b)) time
 
 int x, y, d;
 void extendedEuclid(int a, int b) {

@@ -54,6 +54,68 @@ literate={~} {$\sim$}{1}
 
 \tableofcontents
 
+\section{Tables}
+\begin{center}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{||c c c||}
+ \hline
+  $n$ & not-TLE & Example \\ [0.5ex]
+  \hline\hline
+  $\leq [10..11]$ & $\mathcal{O}(n!), \mathcal{O}(n^6)$ & Enumerate permutations \\
+  \hline
+  $\leq [15..18]$ & $\mathcal{O}(2^nn^2)$ & TSP with DP \\
+  \hline
+  $\leq [18..22]$ & $\mathcal{O}(2^nn)$ & Bitmask DP \\
+  \hline
+  $\leq 100$ & $\mathcal{O}(n^4)$ & 3D DP with $\mathcal{O}(n)$ loop \\
+  \hline
+  $\leq 400$ & $\mathcal{O}(n^3)$ & Floyd-Warshall \\
+  \hline
+  $\leq 2\cdot10^3$ & $\mathcal{O}(n^2\log n)$ & 2 nested loops + tree query \\
+  \hline
+  $\leq 5\cdot10^4$ & $\mathcal{O}(n^2)$ & Bubble/Selection/Insertion Sort \\
+  \hline
+  $\leq 10^5$ & $\mathcal{O}(n\log^2n)$ & Build suffix array \\
+  \hline
+  $\leq 10^6$ & $\mathcal{O}(n\log n)$ & Merge Sort \\
+  \hline
+  $\leq 10^7$ & $\mathcal{O}(n\log\log n)$ & Totient function \\
+  \hline
+  $\leq 10^8$ & $\mathcal{O}(n)$ & Mathy solution often with IO bottleneck ($n \leq 10^9$) \\ [1ex]
+  \hline
+\end{tabular}
+}
+\tiny $10^8$ operations per second
+\end{center}
+
+\begin{center}
+\begin{tabular}{||c c c c c||}
+ \hline
+  Sign & Type & Bits & Max & Digits \\ [0.5ex]
+  \hline\hline
+  $\pm$ & \texttt{char} & 8 & 127 & 2 \\
+  \hline
+  $+$ & \texttt{char} & 8 & 255 & 2 \\
+  \hline
+  $\pm$ & \texttt{short} & 16 & 32 767 & 4 \\
+  \hline
+  $+$ & \texttt{short} & 16 & 65 535 & 4 \\
+  \hline
+  $\pm$ & \texttt{int/long} & 32 & $~2\cdot10^9$ & 9 \\
+  \hline
+  $+$ & \texttt{int/long} & 32 & $~4\cdot10^9$ & 9 \\
+  \hline
+  $\pm$ & \texttt{long long} & 64 & $~9\cdot10^{18}$ & 18 \\
+  \hline
+  $+$ & \texttt{long long} & 64 & $~18\cdot10^{18}$ & 19 \\
+  \hline
+  $\pm$ & \texttt{\_\_int128} & 128 & $~17\cdot10^{37}$ & 38 \\
+  \hline
+  $+$ & \texttt{\_\_int128} & 128 & $~3\cdot10^{38}$ & 38 \\ [1ex]
+  \hline
+\end{tabular}
+\end{center}
+
 \section{Algorithms}
 \begin{center}
 \resizebox{\linewidth}{!}{
@@ -109,6 +171,7 @@ literate={~} {$\sim$}{1}
 }
 {\tiny $A$: Ackermann function}
 \end{center}
+
 
 \subsection{Graph}
 \subsubsection{Articulations and Bridges}

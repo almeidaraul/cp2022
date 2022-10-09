@@ -1,6 +1,7 @@
 // Articulations and Bridges
 // Usage: dfs(source, -1)
 // Status: not tested
+// O(V+E) time & space
 
 int tk = 0;
 vector<int> tin(M, -1);

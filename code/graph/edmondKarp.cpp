@@ -1,5 +1,6 @@
 // Edmond Karp MaxFlow
 // Status: tested (CSES1694, CSES1695)
+// O(VE^2) time, O(V+E) space
 
 vector<vector<int>> capacity(M, vector<int>(M, 0)), adj(M);
 vector<pair<int, int>> mc; //mincut edges

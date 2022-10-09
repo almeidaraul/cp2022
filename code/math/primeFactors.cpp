@@ -1,6 +1,7 @@
 // Prime Factors w/ Optimized Trial Divisions
 // Status: not tested
 // Source: CP3 (pg. 238)
+// O(pi(sqrt(n))) time, O(n) space
 
 vector<int> primes;
 vector<pair<int, int>> factors;

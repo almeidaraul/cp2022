@@ -62,6 +62,7 @@ literate={~} {$\sim$}{1}
 \subsection{Prim MST}
 \begin{lstlisting}
 // Status: tested (UVA10048)
+// O(E log V) time, O(V+E) space
 
 vector<vector<pair<int, int>> adj(M), mst(M);
 vector<bool> taken(M, false);
@@ -101,6 +102,7 @@ void run(int n) {
 \subsection{Dijkstra SSSP}
 \begin{lstlisting}
 // Status: tested (CF20C)
+// O((V+E) log V) time, O(V^2) space
 
 using ii = pair<int, int>;
 const int inf = 0x3f3f3f3f;
@@ -129,6 +131,7 @@ void dijkstra(int s) {
 \subsection{Graph Check}
 \begin{lstlisting}
 // Usage: graphCheck(firstVertex, -1) (p stands for parent)
+// O(V+E) time & space
 
 int UNVISITED = -1, EXPLORED = 0, VISITED = 1;
 vector<vector<int>> adj(M);
@@ -156,6 +159,7 @@ void graphCheck(int v, int p) { //vertex, parent
 \begin{lstlisting}
 // Usage: dfs(source, -1)
 // Status: not tested
+// O(V+E) time & space
 
 int tk = 0;
 vector<int> tin(M, -1);
@@ -186,6 +190,7 @@ void dfs(int v, int p) {
 // Usage: tour(cyc.begin(), start\_vertex)
 // Status: not tested
 // Source: CP3 (pg. 205)
+// O(E^2) time
 
 list<int> cyc;
 vector<vector<int>> adj(M);
@@ -210,6 +215,7 @@ void tour(list<int>::iterator i, int v) {
 \subsection{Kahn's topological sort}
 \begin{lstlisting}
 // Status: tested (UVA11060)
+// O(VE) time, O(V+E) space
 
 vector<vector<int>> adj(M);
 vector<int> sorted;
@@ -240,6 +246,7 @@ void kahn(int n) {
 \begin{lstlisting}
 // Status: not tested
 // Source: CP3 (pg. 209)
+// O(VE) time
 
 vector<vector<int>> adj(M);
 vector<int> match(M, -1);
@@ -269,6 +276,7 @@ for (int v = 0; v < ls; ++v) {//ls = size of the left set
 \subsection{Lowest Common Ancestor}
 \begin{lstlisting}
 // Status: not tested
+// O(N log N) time, O(N log N) space
 
 //--- binary lifting
 int n, l = ceil(log2(n));
@@ -328,6 +336,7 @@ int lca(int v, int u) {
 \begin{lstlisting}
 // Usage: Tarjan(N, adj)
 // Status: tested (UVA247, UVA11838)
+// O(V+E) time & space
 
 vector<int> tin(M, -1), low(M, -1);
 vector<vector<int> adj(M);
@@ -355,6 +364,7 @@ void dfs(int v) {
 \subsection{Bellman-Ford SSSP}
 \begin{lstlisting}
 // Status: tested (UVA1112, UVA10449)
+// O(VE) time, O(V+E) space
 const int inf = 0x3f3f3f3f;
 vector<vector<pair<int, int>>> adj(M);
 vector<int> dist(M, inf);
@@ -380,6 +390,7 @@ bool cycle(int n) {
 \begin{lstlisting}
 // Usage: Kruskal(V, E, edges) (weighted edges)
 // Status: tested (UVA1174)
+// O(E log V) time, O(V+E) space
 
 using iii = pair<int, pair<int, int>>; //weight, two vertices
 vector<iii> edges;
@@ -403,6 +414,7 @@ int kruskal() {
 \subsection{Edmond Karp MaxFlow}
 \begin{lstlisting}
 // Status: tested (CSES1694, CSES1695)
+// O(VE^2) time, O(V+E) space
 
 vector<vector<int>> capacity(M, vector<int>(M, 0)), adj(M);
 vector<pair<int, int>> mc; //mincut edges
@@ -470,6 +482,7 @@ void mincut(int s, int t) {
 \begin{lstlisting}
 // Usage: FloydWarshall(n, edges)
 // Status: tested (UVA821, UVA1056)
+// O(V^3 + E) time, O(V^2 + E) space
 
 struct edge { int v, u, w; };
 const int inf = 0x3f3f3f3f;
@@ -497,6 +510,7 @@ void floydWarshall(int n) {
 \subsection{Sieve of Eratosthenes}
 \begin{lstlisting}
 // Status: not tested
+// O(n log log n) time, O(n) space
 
 bitset<11234567> pr;
 vector<int> factors(M, 0);
@@ -528,6 +542,7 @@ bool isPrime(int n) {
 \begin{lstlisting}
 // Status: not tested
 // Source: CP3 (pg. 238)
+// O(pi(sqrt(n))) time, O(n) space
 
 vector<int> primes;
 vector<pair<int, int>> factors;
@@ -550,6 +565,7 @@ void pf(int n) {
 \begin{lstlisting}
 // Status: not tested
 // Source: CP3 (pg. 242)
+// O(log min(a, b)) time
 
 int x, y, d;
 void extendedEuclid(int a, int b) {
@@ -578,6 +594,7 @@ void solve(int a, int b, int c, int i) { //i solutions
 \begin{lstlisting}
 // Status: not tested
 // Source: CPHB (p. 156)
+// O(V) time
 
 int findCycle(int x) {
 	int a, b;
@@ -613,6 +630,7 @@ int findCycle(int x) {
 \begin{lstlisting}
 // Status: not tested
 // Source: GEMA ICMC (YouTube)
+// O(N log N) time
 
 vector<int> v, vals, cv; // all of the same size, cv = compressed v
 vals = v;
@@ -653,6 +671,7 @@ istream& operator>>(istream& in, __int128& x) {
 \begin{lstlisting}
 // Status: not tested
 // Source: CPHB
+// O(log N) time
 
 // std
 int l = 0, r = n-1;
@@ -684,6 +703,7 @@ if (array[k] == x)
 \begin{lstlisting}
 // Status: not tested
 // Source: CP-Algorithms
+// O(N) time
 
 vector<int> prefix(string s) {
 	int n = s.length();
@@ -711,6 +731,7 @@ vector<int> prefix(string s) {
 \begin{lstlisting}
 // Usage: UnionFind(N);
 // Status: tested (UVA11503)
+// O(Ackermann * N) time, O(N) space
 
 struct UnionFind {
 	int N;
@@ -749,6 +770,11 @@ struct UnionFind {
 // Usage: SegTree(N);
 // Source: CP Handbook
 // Status: not tested
+// Complexity:
+//  build: O(n)
+//  query: O(log n)
+//  modify: O(log n)
+//  + uses less space than top-down 4n segtree (2n here)
 
 struct SegTree {
   unsigned int n;
@@ -782,6 +808,10 @@ struct SegTree {
 \subsection{Segment Tree}
 \begin{lstlisting}
 // Usage: SegTree(N)
+// Complexity:
+//  build: O(n)
+//  query: O(n)
+//  modify: O(n)
 
 struct SegTree {
 	int N;
@@ -796,7 +826,6 @@ struct SegTree {
 	int left(int i) { return i*2; }
 	int right(int i) { return i*2+1; }
 
-	//O(N)
 	void build(int v, int tl, int tr) {
 		if (tl == tr) st[v] = a[tl];
 		else {
@@ -807,7 +836,6 @@ struct SegTree {
 		}
 	}
 
-	//O(log n)
 	int maxquery(int v, int tl, int tr, int l, int r) {
 		if (l > r) return -1;
 		if (l == tl && r == tr) return st[v];
@@ -821,7 +849,6 @@ struct SegTree {
 		return maxquery(1, 0, n-1, l-1, r-1);
 	}
 
-	//O(log n)
 	void update(int v, int tl, int tr, int p, int new_val) {
 		if (tl == tr) st[v] = new_val;
 		else {

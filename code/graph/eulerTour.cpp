@@ -2,6 +2,7 @@
 // Usage: tour(cyc.begin(), start\_vertex)
 // Status: not tested
 // Source: CP3 (pg. 205)
+// O(E^2) time
 
 list<int> cyc;
 vector<vector<int>> adj(M);

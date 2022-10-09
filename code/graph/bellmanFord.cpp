@@ -1,5 +1,6 @@
 // Bellman-Ford SSSP
 // Status: tested (UVA1112, UVA10449)
+// O(VE) time, O(V+E) space
 const int inf = 0x3f3f3f3f;
 vector<vector<pair<int, int>>> adj(M);
 vector<int> dist(M, inf);

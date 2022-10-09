@@ -1,6 +1,7 @@
 // Prefix Function (KMP)
 // Status: not tested
 // Source: CP-Algorithms
+// O(N) time
 
 vector<int> prefix(string s) {
 	int n = s.length();

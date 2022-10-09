@@ -1,6 +1,7 @@
 // Binary Search (but beautiful)
 // Status: not tested
 // Source: CPHB
+// O(log N) time
 
 // std
 int l = 0, r = n-1;

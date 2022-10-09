@@ -1,6 +1,7 @@
 // Max Cardinality Bipartite Matching
 // Status: not tested
 // Source: CP3 (pg. 209)
+// O(VE) time
 
 vector<vector<int>> adj(M);
 vector<int> match(M, -1);

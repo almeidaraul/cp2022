@@ -1,5 +1,6 @@
 // Prim MST
 // Status: tested (UVA10048)
+// O(E log V) time, O(V+E) space
 
 vector<vector<pair<int, int>> adj(M), mst(M);
 vector<bool> taken(M, false);

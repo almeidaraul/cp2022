@@ -1,6 +1,7 @@
 // Kruskal MST
 // Usage: Kruskal(V, E, edges) (weighted edges)
 // Status: tested (UVA1174)
+// O(E log V) time, O(V+E) space
 
 using iii = pair<int, pair<int, int>>; //weight, two vertices
 vector<iii> edges;

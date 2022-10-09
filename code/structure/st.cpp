@@ -1,5 +1,9 @@
 // Segment Tree
 // Usage: SegTree(N)
+// Complexity:
+//  build: O(n)
+//  query: O(n)
+//  modify: O(n)
 
 struct SegTree {
 	int N;
@@ -14,7 +18,6 @@ struct SegTree {
 	int left(int i) { return i*2; }
 	int right(int i) { return i*2+1; }
 
-	//O(N)
 	void build(int v, int tl, int tr) {
 		if (tl == tr) st[v] = a[tl];
 		else {
@@ -25,7 +28,6 @@ struct SegTree {
 		}
 	}
 
-	//O(log n)
 	int maxquery(int v, int tl, int tr, int l, int r) {
 		if (l > r) return -1;
 		if (l == tl && r == tr) return st[v];
@@ -39,7 +41,6 @@ struct SegTree {
 		return maxquery(1, 0, n-1, l-1, r-1);
 	}
 
-	//O(log n)
 	void update(int v, int tl, int tr, int p, int new_val) {
 		if (tl == tr) st[v] = new_val;
 		else {
