@@ -6,14 +6,16 @@ All problems that I solve after october 8, 2022.
 Leave two spaces before and after each problem to make this more readable.
 
 
-## [Weird Algorithm](cses/weird_algorithm.cpp) [CSES](https://cses.fi/problemset/task/1068/) (09/10/22)
-- _ad hoc_
+## [Weird Algorithm](cses/weird_algorithm.cpp) - [CSES](https://cses.fi/problemset/task/1068/) (09/10/22)
+_ad hoc_
+
 This is an implementation of the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 n gets pretty big so you need a `long long`
 
 
-## [Problem name](readme.md) [link to problem - judge name](readme.md) (dd/mm/yy)
-- _topics, separated, by, commas_
+## [Problem name](readme.md) - [link to problem - judge name](readme.md) (dd/mm/yy)
+_topics, separated, by, commas_
+
 Solution + Takeaways/Comments/Analysis/Resources
 
 Preferably with hints first, e.g.,
@@ -37,5 +39,6 @@ name + url | to solve/upsolve | from contest X, tried DP, etc
 
 # To-do Contests
 contest | notes
+---|---
 [2022-2023 ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/103960) | já fiz alguns mas nem todos, meio upsolve meio to solve
 [FASE ZERO DA MARATONA DE PROGRAMAÇÃO DA SBC](https://www.beecrowd.com.br/judge/pt/contests/view/685) | já fiz alguns mas nem todos, meio upsolve meio to solve
