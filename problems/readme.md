@@ -6,15 +6,13 @@ All problems that I solve after october 8, 2022.
 Leave two spaces before and after each problem to make this more readable.
 
 
-## [Weird Algorithm](cses/weird_algorithm.cpp) - [CSES](https://cses.fi/problemset/task/1068/) (09/10/22)
-_ad hoc_
+**[Weird Algorithm](cses/weird_algorithm.cpp)** - [CSES](https://cses.fi/problemset/task/1068/) (09/10/22) [ad hoc]
 
 This is an implementation of the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 n gets pretty big so you need a `long long`
 
 
-## [Problem name](readme.md) - [link to problem - judge name](readme.md) (dd/mm/yy)
-_topics, separated, by, commas_
+**[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
 
