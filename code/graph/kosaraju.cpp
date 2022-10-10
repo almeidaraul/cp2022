@@ -1,5 +1,5 @@
 // Kosaraju SCC
-// Usage: Tarjan(N, adj)
+// run kosaraju()
 // not tested
 // O(V+E) time & space (2 dfs calls)
 
