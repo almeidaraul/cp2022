@@ -6,7 +6,19 @@ All problems that I solve after october 8, 2022.
 Leave two spaces before and after each problem to make this more readable.
 
 
+## Weird Algorithm
+- **From:** CSES
+- **Date:** 09/10/22
+- **Topics:** implementation
+### Solution
+This is an implementation of the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
+n gets pretty big so you need a `long long`
+### Takeaways/Comments/Analysis/Resources
+Careful with long long!
+
+
 ## Problem name
+- **From:** contest/problemset
 - **Date:** dd/mm/yy
 - **Topics:** separated, by, commas
 ### Solution
