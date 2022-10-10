@@ -6,28 +6,21 @@ All problems that I solve after october 8, 2022.
 Leave two spaces before and after each problem to make this more readable.
 
 
-## [Weird Algorithm](https://cses.fi/problemset/task/1068/)
-- **From:** CSES
-- **Date:** 09/10/22
-- **Topics:** implementation
-### Solution
+## [Weird Algorithm](cses/weird_algorithm.cpp) [CSES](https://cses.fi/problemset/task/1068/) (09/10/22)
+- _ad hoc_
 This is an implementation of the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 n gets pretty big so you need a `long long`
-### Takeaways/Comments/Analysis/Resources
-Careful with long long!
 
 
-## Problem name
-- **From:** contest/problemset
-- **Date:** dd/mm/yy
-- **Topics:** separated, by, commas
-### Solution
+## [Problem name](readme.md) [link to problem - judge name](readme.md) (dd/mm/yy)
+- _topics, separated, by, commas_
+Solution + Takeaways/Comments/Analysis/Resources
+
 Preferably with hints first, e.g.,
 - **Hint 1:** (hint)
 - **Hint 2:** (hint)
-(full solution)
-### Takeaways/Comments/Analysis/Resources
-(something here)
+(and then the full solution)
+
 
 # To-do Problems
 problem | type | Comments/idea/what I've tried
@@ -41,3 +34,8 @@ name + url | to solve/upsolve | from contest X, tried DP, etc
 [Sticker Album](https://codeforces.com/gym/102861/problem/A) | upsolve | ideia importante
 [Componentes Conexas Atacam Novamente](https://codeforces.com/gym/102020/problem/C) | upsolve | segtree de dsu
 [Chimambu](https://www.beecrowd.com.br/judge/pt/challenges/view/685/3) | upsolve | maratona fase zero 2022
+
+# To-do Contests
+contest | notes
+[2022-2023 ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/103960) | já fiz alguns mas nem todos, meio upsolve meio to solve
+[FASE ZERO DA MARATONA DE PROGRAMAÇÃO DA SBC](https://www.beecrowd.com.br/judge/pt/contests/view/685) | já fiz alguns mas nem todos, meio upsolve meio to solve
