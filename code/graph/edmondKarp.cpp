@@ -46,7 +46,7 @@ void mincut(int s, int t) {
 	stack<int> st;
 	vector<bool> visited(n, false);
 	vector<pair<int, int>> ans;
-	st.push(0);
+	st.push(s); // changed from 0 to s
 	while (!st.empty()) {
 		int v = st.top(); st.pop();
 		if (visited[v]) continue;

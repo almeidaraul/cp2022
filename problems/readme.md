@@ -48,5 +48,4 @@ This is here because all the other to-do lists are here. Content to study/add to
 topic | resources | notes
 ---|---|--
 Kosaraju | [cp-algorithms](https://cp-algorithms.com/graph/strongly-connected-components.html), handbook | explicar + caderno
-MaxFlow | handbook | explicar (no caderno já tá ok)
 Euler Path | [cp-algorithms](https://cp-algorithms.com/graph/euler_path.html) | provar + explicar + caderno (complexidade melhor que o algoritmo do caderno)
