@@ -6,7 +6,7 @@ All problems that I solve after october 8, 2022.
 Leave two spaces before and after each problem to make this more readable.
 
 
-## Weird Algorithm
+## [Weird Algorithm](https://cses.fi/problemset/task/1068/)
 - **From:** CSES
 - **Date:** 09/10/22
 - **Topics:** implementation
