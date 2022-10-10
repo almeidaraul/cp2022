@@ -244,6 +244,19 @@ Take smallest edge that leads to vertex $v$
 \subsubsection{Tarjan}
 A node can reach any other node in its own SCC (DFS + stack)
 
+\subsubsection{Kosaraju}
+Get topological sort of a graph and then run DFS on the transposed graph following this topological sort.
+
+Let $C$ and $C'$ be two strongly connected components in the graph $G$. If there is an edge $\{C, C'\}$, then after computing \texttt{tout} and \texttt{tin} in a DFS, \texttt{tout[C] > tout[C']}. Proof:
+\begin{itemize}
+  \item If \texttt{tin[C] < tin[C']}, $C$ shows up first in the DFS, and since there is an edge to $C'$, it will be in $C$'s subtree in the DFS tree; so \texttt{tout[C] > tout[C']}
+  \item If \texttt{tin[C] > tin[C']}, $C'$ shows up first, but since it has no path to $C$, $C$ will show up later and then have a greater \texttt{tout} value.
+\end{itemize}
+
+So when you do DFS on the transposed graph following topological sort, you will start on the root vertex (because it'll have the largest \texttt{tout} value), and only be able to visit the nodes in its SCC (because the edges that would lead to other SCCs doesn't exist in the transposed graph).
+
+Remember that you have to "disable" the vertices in already processed SCCs.
+
 \subsection{Math}
 \subsubsection{Floyd}
 Slow and fast (tortoise and hare)
