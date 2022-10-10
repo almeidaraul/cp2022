@@ -27,7 +27,6 @@ Preferably with hints first, e.g.,
 # To-do Problems
 problem | type | Comments/idea/what I've tried
 ---|---|---
-name + url | to solve/upsolve | from contest X, tried DP, etc
 [Como Treinar Seu Dragão](https://www.beecrowd.com.br/judge/pt/problems/view/1851) | upsolve | treino zatesko 17.08
 [Decoration](https://codeforces.com/gym/103081/problem/G) | upsolve | SWERC 2020-2021, treino time
 [Safe Distance](https://codeforces.com/gym/103081/problem/C) | upsolve | SWERC 2020-21, treino time
@@ -38,7 +37,18 @@ name + url | to solve/upsolve | from contest X, tried DP, etc
 [Chimambu](https://www.beecrowd.com.br/judge/pt/challenges/view/685/3) | upsolve | maratona fase zero 2022
 
 # To-do Contests
+**Focusing on atcoder beginner contests, codeforces educational rounds and (most of all) ICPC [sub]regionals**
+
 contest | notes
 ---|---
 [2022-2023 ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/103960) | já fiz alguns mas nem todos, meio upsolve meio to solve
 [FASE ZERO DA MARATONA DE PROGRAMAÇÃO DA SBC](https://www.beecrowd.com.br/judge/pt/contests/view/685) | já fiz alguns mas nem todos, meio upsolve meio to solve
+
+# To-do Notebook
+This is here because all the other to-do lists are here. Content to study/add to notebook/record an explanation
+
+topic | resources | notes
+---|---|--
+Kosaraju | [cp-algorithms](https://cp-algorithms.com/graph/strongly-connected-components.html), handbook | explicar + caderno
+MaxFlow | handbook | explicar (no caderno já tá ok)
+Euler Path | [cp-algorithms](https://cp-algorithms.com/graph/euler_path.html) | provar + explicar + caderno (complexidade melhor que o algoritmo do caderno)

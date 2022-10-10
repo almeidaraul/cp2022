@@ -23,6 +23,7 @@ The LaTeX-related stuff (header, code) was heavily based/slightly copied off of
 	- [I compiled a list of almost all useful blogs ever published on Codeforces](https://codeforces.com/blog/entry/91363)
 	- [Tutorial and tips to reach Expert.](https://codeforces.com/blog/entry/81882)
 	- [A way to Practice Competitive Programming : From Rating 1000 to 2400+](https://codeforces.com/blog/entry/66909)
+  - [Problem Topics](https://codeforces.com/blog/entry/55274) (problems by topic)
 - Books
   - [Handbook of geometry for competitive programmers](https://vlecomte.github.io/cp-geo.pdf) and [the GitHub repository](https://github.com/pllk/cphb)
   - [Competitive Programmer's Handbook](https://cses.fi/book/book.pdf)
