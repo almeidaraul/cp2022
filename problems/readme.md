@@ -23,6 +23,7 @@ Preferably with hints first, e.g.,
 
 
 # To-do Problems
+**Focusing on CSES**
 problem | type | Comments/idea/what I've tried
 ---|---|---
 [Como Treinar Seu Dragão](https://www.beecrowd.com.br/judge/pt/problems/view/1851) | upsolve | treino zatesko 17.08
