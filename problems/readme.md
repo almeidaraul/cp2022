@@ -11,6 +11,13 @@ Leave two spaces before and after each problem to make this more readable.
 This is an implementation of the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 n gets pretty big so you need a `long long`
 
+---
+
+**[Números Virados](icpc/subbr2022/n.cpp)** - [ICPC BR Subregional 2022](https://codeforces.com/gym/103960) (11/10/22) [sliding window, implementation]
+
+Mantém uma sliding window que vai dos k últimos até o k-ésimo (i.e., começa na direita e vai até a esquerda), aí mantém uma estrutura pra pegar o cara com maior B que não tá virado e tá na sliding window e o cara com menor B que tá virado. Cuidado com a implementação, ficar atualizando resposta etc é bem complicadinho (o jeito mais fácil é virar os primeiros L da primeira sliding window, depois ir adicionando mais gente)
+
+---
 
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
