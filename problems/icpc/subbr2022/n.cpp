@@ -3,95 +3,81 @@ using namespace std;
 using ll = long long;
 using ii = pair<int, int>;
 
-int viradas = 0;
-ll s = 0;
-vector<bool> virado;
-vector<int> a, b;
-set<ii> virados, desvirados;
+struct maxmin {
+  set<pair<ll, int>> values;
+  vector<set<pair<ll, int>>::iterator> by_idx;
+  vector<bool> has_idx;
 
-void limpa(int i) {
-  int peso = b[i];
-  auto it = virados.find({peso, i});
-  if (it != virados.end())
-    virados.erase(it);
-  it = desvirados.find({-peso, i});
-  if (it != desvirados.end())
-    desvirados.erase(it);
-}
+  maxmin(int n) : by_idx(n), has_idx(n) {};
 
-void vira(int i) {
-  virado[i] = true;
-  int peso = b[i];
-  auto it = desvirados.find({-peso, i});
-  if (it != desvirados.end())
-    desvirados.erase(it);
-  virados.insert({peso, i});
-}
-
-void desvira(int i) {
-  virado[i] = false;
-  int peso = b[i];
-  auto it = virados.find({peso, i});
-  if (it != virados.end())
-    virados.erase(it);
-  desvirados.insert({-peso, i});
-}
-
-int melhor_pra_virar() {
-  return desvirados.begin()->second; // maior b
-}
-
-int melhor_pra_desvirar() {
-  return virados.begin()->second; // menor b
-}
+  void insert(ll value, int idx) {
+    by_idx[idx] = values.insert({value, idx}).first;
+    has_idx[idx] = true;
+  }
+  pair<ll, int> get(bool mx) { return mx ? *(--values.end()) : *values.begin(); }
+  void rm(int idx) {
+    values.erase(by_idx[idx]);
+    has_idx[idx] = false;
+  }
+  bool has(int idx) { return has_idx[idx]; }
+  bool size() { return values.size(); }
+};
 
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-  int n; cin >> n;
-  virado.resize(2*n+1); a.resize(2*n+1); b.resize(2*n+1);
-  for (int i = 0; i < n; ++i) { cin >> a[i]; }
-  for (int i = 0; i < n; ++i) { cin >> b[i]; }
-  for (int i = 0; i < n; ++i) { a[i+n] = a[i]; b[i+n] = b[i]; }
+  int N; cin >> N;
+  vector<int> _a(N), _b(N);
+  for (int i = 0; i < N; ++i) { cin >> _a[i]; }
+  for (int i = 0; i < N; ++i) { cin >> _b[i]; }
   int k, l;
   cin >> k >> l;
-  
-  ll ans = 0;
-  for (int i = n-k; i < n-k+l; ++i) { // os primeiros l vc pega
-    cout << i << ' ';
-    vira(i);
-    s += a[i] + b[i];
+  int n = (N+k) - (N-k);
+  vector<int> a(n), b(n);
+  for (int i = N-k; i < N+k; ++i) {
+    a[i-N+k] = _a[i%N];
+    b[i-N+k] = _b[i%N];
   }
-  if (l == k) ans = max(ans, s);
-  // [n-k+l, n-k+2*k)
-  // n-k+l --> n+k
-  if (n > l)
-  for (int i = n-k+l; i < n+k; ++i) {
-    int f = i-k; // vai sair da sliding window agora
-    cout << i%n << " (f = " << f%n << ") ";
-    s += a[i] - a[f];
-    limpa(f);
-    if (virado[f]) {
-      virado[f] = false;
-      // vai sair um virado da sliding window
-      s -= b[f];
-      int j = melhor_pra_virar();
-      vira(j);
-      s = s + b[j];
+
+  maxmin vira(n), naovira(n);
+  ll s = 0, ans = 0;
+  for (int i = 0; i < l; ++i) {
+    s += a[i] + b[i];
+    vira.insert(b[i], i); 
+  }
+  for (int i = l; i < n; ++i) {
+    s += a[i];
+    int j = vira.get(false).second;
+    ll s_vira = s;
+    if (vira.size()) {
+      s_vira += b[i] - b[j];
+    }
+    if (s_vira > s) {
+      vira.rm(j);
+      vira.insert(b[i], i);
+      naovira.insert(b[j], j);
+      s = s_vira;
     } else {
-      // pode tanto pegar esse e tirar um quanto não pegar esse
-      int j = melhor_pra_desvirar();
-      ll s_pick = s + b[i] - b[j];
-      if (s_pick > s) {
-        vira(i);
-        desvira(j);
+      naovira.insert(b[i], i);
+    }
+
+    int f = i-k; // cara da esquerda (sai da sw)
+    if (f >= 0) {
+      s -= a[f];
+      if (vira.has(f)) {
+        vira.rm(f);
+        s -= b[f];
+        j = naovira.get(true).second;
+        s += b[j];
+        naovira.rm(j);
+        vira.insert(b[j], j);
       } else {
-        desvira(i);
+        naovira.rm(f);
       }
-      s = max(s_pick, s);
     }
     ans = max(ans, s);
   }
-  cout << '\n';
+  ans = max(ans, s);
+
   cout << ans << '\n';
 }
