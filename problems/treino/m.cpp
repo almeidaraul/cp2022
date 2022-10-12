@@ -14,16 +14,15 @@ using ll = long long;
 // + dfs: O(n + m)
 // O(nlogn + n + m)
 
-vector<vector<int>> adj(50101, vector<int>()), adj_rev(50101, vector<int>());
-vector<bool> used(50101);
-vector<int> order, component;
-vector<int> rep(50101);
-vector<vector<int>> sccs;
-vector<set<int>> adj_sccs(50101, set<int>());
-vector<int> ans (50101);
-int tik = 0;
+vector<vector<size_t>> adj(500001, vector<size_t>()), adj_rev(500001, vector<size_t>());
+vector<bool> used(500001);
+vector<size_t> order, component;
+vector<size_t> rep(500001);
+vector<vector<size_t>> sccs;
+vector<set<size_t>> adj_sccs(500001, set<size_t>());
+vector<size_t> ans (500001);
 
-void dfs1(int v) { // kosaraju 1 (no grafo normal)
+void dfs1(size_t v) { // kosaraju 1 (no grafo normal)
   used[v] = true;
   for (auto u: adj[v])
     if (!used[u])
@@ -31,7 +30,7 @@ void dfs1(int v) { // kosaraju 1 (no grafo normal)
   order.push_back(v);
 }
 
-void dfs2(int v) { // kosaraju 2 (no grafo transposto)
+void dfs2(size_t v) { // kosaraju 2 (no grafo transposto)
   used[v] = true;
   component.push_back(v);
   for (auto u: adj_rev[v])
@@ -39,13 +38,13 @@ void dfs2(int v) { // kosaraju 2 (no grafo transposto)
       dfs2(u);
 }
 
-void dfs(int c) { // dfs pra computar a resposta (em cima dos sccs)
+void dfs(size_t c) { // dfs pra computar a resposta (em cima dos sccs)
   used[c] = true;
-  ans[c] = sccs[rep[c]].size();
+  ans[c] = sccs[c].size();
   for (auto u: adj_sccs[c]) {
     if (!used[u])
       dfs(u);
-    ans[c] += sccs[rep[u]].size();
+    ans[c] += ans[u];
   }
 }
 
@@ -60,6 +59,7 @@ int main() {
       int nxt; cin >> nxt;
       nxt--;
       adj[prev].push_back(nxt);
+      adj_rev[nxt].push_back(prev);
       prev = nxt;
     }
   }
@@ -67,31 +67,30 @@ int main() {
     if (!used[i]) dfs1(i);
 
   used.assign(n, false);
-  reverse(order.begin(), order.end());
-
-  for (auto v: order)
+  for (auto vit = order.rbegin(); vit < order.rend(); ++vit) {
+    size_t v = *vit;
     if (!used[v]) {
       dfs2(v);
-      tik++;
       for (auto u: component) {
         rep[u] = sccs.size();
       }
       sccs.push_back(component);
       component.clear();
     }
+  }
   
-  for (int s = 0; s < sccs.size(); ++s) {
+  for (size_t s = 0; s < sccs.size(); ++s)
     for (auto v: sccs[s])
       for (auto u: adj[v])
-        adj_sccs[s].insert(rep[u]);
-  }
+        if (rep[u] != s)
+          adj_sccs[s].insert(rep[u]);
 
-  used.assign(sccs.size(), false);
-  for (int i = 0; i < sccs.size(); ++i)
+  used.assign(n, false);
+  for (size_t i = 0; i < sccs.size(); ++i)
     if (!used[i]) dfs(i);
 
   for (int i = 0; i < n; ++i) {
-    cout << ans[i]-1 << ' ';
+    cout << ans[rep[i]]-1 << ' ';
   }
   cout << '\n';
 }
