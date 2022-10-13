@@ -1,6 +1,7 @@
 // Kosaraju SCC
 // run kosaraju()
-// not tested
+// tested:  cf103931M
+// source: cp-algorithms
 // O(V+E) time & space (2 dfs calls)
 
 int n; // number of vertices

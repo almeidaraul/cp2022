@@ -19,6 +19,36 @@ Mantém uma sliding window que vai dos k últimos até o k-ésimo (i.e., começa
 
 ---
 
+**[Nine Is Greater Than Ten](gymcf/shanghaicpc2022/n.cpp)** - [2022 Shanghai Collegiate Programming Contest](https://codeforces.com/gym/103931) (12/10/22) [string]
+
+Faz comparação lexicográfica dos dois números (i.e., lê como string)
+
+---
+
+**[My University Is Better Than Yours](gymcf/shanghaicpc2022/m.cpp)** - [2022 Shanghai Collegiate Programming Contest](https://codeforces.com/gym/103931) (12/10/22) [graph, scc]
+
+Faz um grafo direcionado a partir de todos os rankings, onde existe aresta `(v, u)` se `v` aparece log antes de `u` em algum ranking (i.e., adjacentes).
+
+Roda kosaraju pra pegar os SCCs. Pra cada SCC, guarda quantos vértices tem nele. Depois, recursivamente, um SCC atualiza essa quantidade somando o número guardado pelos seus SCCs filhos (i.e., ele guarda a soma da subarvore dele).
+
+Pra cada vértice, a resposta vai ser o número guardado pelo seu SCC - 1 (pq ele tá sendo contado).
+
+Tem que usar SCC porque podem existir ciclos.
+
+---
+
+**[Missing Number](cses/missing_number.cpp)** - [CSES](https://cses.fi/problemset/task/1083/) (13/10/22) [ad hoc]
+
+Just keep a `vector<bool>` to know which numbers are printed
+
+---
+
+**[Repetitions](cses/repetitions.cpp)** - [CSES](https://cses.fi/problemset/task/1069/) (13/10/22) [ad hoc]
+
+For each char in `ACGT`, for each char in the input string: keep a counter that increases when you see the selected character, else it drops to zero (and save its maximum)
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
@@ -33,7 +63,6 @@ Preferably with hints first, e.g.,
 **Focusing on CSES**
 problem | type | Comments/idea/what I've tried
 ---|---|---
-[Como Treinar Seu Dragão](https://www.beecrowd.com.br/judge/pt/problems/view/1851) | upsolve | treino zatesko 17.08
 [Decoration](https://codeforces.com/gym/103081/problem/G) | upsolve | SWERC 2020-2021, treino time
 [Safe Distance](https://codeforces.com/gym/103081/problem/C) | upsolve | SWERC 2020-21, treino time
 [Consulta e Alteração](https://www.beecrowd.com.br/judge/pt/problems/view/3306?) | upsolve | lazy segtree com gcd
