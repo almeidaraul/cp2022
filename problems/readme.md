@@ -96,6 +96,7 @@ contest | notes
 ---|---
 [2022-2023 ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/103960) | já fiz alguns mas nem todos, meio upsolve meio to solve
 [FASE ZERO DA MARATONA DE PROGRAMAÇÃO DA SBC](https://www.beecrowd.com.br/judge/pt/contests/view/685) | já fiz alguns mas nem todos, meio upsolve meio to solve
+[2020-2021 ACM-ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/102861) | já fiz algumas
 
 # To-do Notebook
 This is here because all the other to-do lists are here. Content to study/add to notebook/record an explanation
