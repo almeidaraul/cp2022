@@ -49,6 +49,25 @@ For each char in `ACGT`, for each char in the input string: keep a counter that 
 
 ---
 
+**[Álbum de Figurinhas](icpc/subbr2020/a.cpp)** - [ICPC BR Subregional 2020](https://codeforces.com/gym/102861) (13/10/22) [probability, expected value, sliding window]
+
+Seja `E(x)` o número de pacotes necessários pra obter `x` figurinhas. `E(0) = 0`; `E(i < A) = 1`.
+
+Já que um pacote tem chance igual de ter qualquer número no intervalo `[A, B]`, seja `L = B-A+1` (tamanho do intervalo). Então para todo `x >= A`:
+
+```
+E(x) = 1 (precisa abrir pelo menos um pacote) + (1/L)*Somatorio(E(x-A)..E(x-B))
+```
+
+Você pode calcular essa soma com uma janela deslizante para caber em O(N).
+
+Se `A = 0`, o `E(x)` aparece dos dois lados da equação, mas vc ainda consegue isolar ele e obter
+```
+E(x) = (L/(L-1))*(1 + (1/L)*Somatorio(E(x-A)..E(x-B)))
+```
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
@@ -67,7 +86,6 @@ problem | type | Comments/idea/what I've tried
 [Safe Distance](https://codeforces.com/gym/103081/problem/C) | upsolve | SWERC 2020-21, treino time
 [Consulta e Alteração](https://www.beecrowd.com.br/judge/pt/problems/view/3306?) | upsolve | lazy segtree com gcd
 [Delivering Pizza](https://codeforces.com/gym/103274/problem/D) | upsolve | treino time
-[Sticker Album](https://codeforces.com/gym/102861/problem/A) | upsolve | ideia importante
 [Componentes Conexas Atacam Novamente](https://codeforces.com/gym/102020/problem/C) | upsolve | segtree de dsu
 [Chimambu](https://www.beecrowd.com.br/judge/pt/challenges/view/685/3) | upsolve | maratona fase zero 2022
 
