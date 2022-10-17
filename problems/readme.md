@@ -68,6 +68,22 @@ E(x) = (L/(L-1))*(1 + (1/L)*Somatorio(E(x-A)..E(x-B)))
 
 ---
 
+**[Increasing Array](cses/increasing_array.cpp)** - [CSES](https://cses.fi/problemset/task/1094/) (17/10/22) [ad hoc]
+
+O problema pede que `v[i] >= v[i-1]` para todo `0 < i < n`. O único caso em que você precisa mudar algo é quando `v[i] < v[i-1]`, e nesse caso o menor número de operações é o necessário para chegar em `v[i] == v[i-1]` (`v[i-1] - v[i]`).
+
+---
+
+**[Permutations](cses/permutations.cpp)** - [CSES](https://cses.fi/problemset/task/1070/) (17/10/22) [ad hoc, permutations]
+
+Se `n == 1`, basta imprimir `1`.
+
+Se `n < 4`, não existe solução.
+
+Caso contrário, separe a sequência `1..n` em duas metades: `1..(n/2)` e `(n/2+1)..n`. Sejam essas metades `A` e `B`. A resposta será `B[1] A[1] B[2] A[2] ...`. No caso em que `n` é ímpar, basta imprimir também B[n/2 + 1].
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
