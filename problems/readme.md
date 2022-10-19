@@ -101,7 +101,7 @@ problem | type | Comments/idea/what I've tried
 [Decoration](https://codeforces.com/gym/103081/problem/G) | upsolve | SWERC 2020-2021, treino time
 [Safe Distance](https://codeforces.com/gym/103081/problem/C) | upsolve | SWERC 2020-21, treino time
 [Consulta e Alteração](https://www.beecrowd.com.br/judge/pt/problems/view/3306?) | upsolve | lazy segtree com gcd
-[Delivering Pizza](https://codeforces.com/gym/103274/problem/D) | upsolve | treino time
+~[Delivering Pizza](https://codeforces.com/gym/103274/problem/D)~ | ~upsolve~ | ~treino time~
 [Componentes Conexas Atacam Novamente](https://codeforces.com/gym/102020/problem/C) | upsolve | segtree de dsu
 [Chimambu](https://www.beecrowd.com.br/judge/pt/challenges/view/685/3) | upsolve | maratona fase zero 2022
 
