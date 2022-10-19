@@ -84,6 +84,40 @@ Caso contrário, separe a sequência `1..n` em duas metades: `1..(n/2)` e `(n/2+
 
 ---
 
+**[Password](codeforces/cf1743/a.cpp)** - [Codeforces](https://codeforces.com/contest/1743) (19/10/22) [permutations, combinations, counting]
+
+Se você escolhe dois dígitos, tem 6 possibilidades de senha. Digamos que sejam os dígitos X e Y.
+
+O início pode ser XX ou YY, e aí os últimos 2 dígitos são o outro (XX ou YY, respectivamente). Então são 2 possibilidades: XXYY e YYXX.
+
+Se o início for XY ou YX (2 possibilidades), os próximos dois podem ser tanto XY quanto YX (2 possibilidades). Então são 2x2 = 4 possibilidades (XYXY, XYYX, YXXY, YXYX).
+
+Então são 6 possibilidades.
+
+Se ele sabe que **não** foram usados `n` dígitos, você pode escolher qualquer par de dígitos entre `10-n`. Então a resposta é `6*(n!)/(2*(n-2)!)` (6 * n escolhe 2).
+
+---
+
+**[Permutation Value](codeforces/cf1743/b.cpp)** - [Codeforces](https://codeforces.com/contest/1743) (19/10/22) [permutations, subsegments]
+
+Pra que um subsegmento seja permutação, ele precisa ter todos os números de `1` até algum `n`, então dois subsegmentos sempre são inclusos: a permutação inteira e o subsegmento `[1]`.
+
+Se você começa uma permutação com `1`, pra um outro subsegmento ser permutação ele precisa começar na primeira posição (porque precisa incluir o número `1`).
+
+Se você termina uma permutação com `2`, pra um outro subsegmento ser permutação ele precisa terminar na última posição (porque precisa incluir o número `2`).
+
+Então, uma solução sempre é `1 [n..3] 2`.
+
+---
+
+**[Save the Magazines](codeforces/cf1743/c.cpp)** - [Codeforces](https://codeforces.com/contest/1743) (19/10/22) [subsegments, greedy]
+
+Note que em qualquer subsegmento (em relação às tampas) no estilo `01+` (`01`, `011`, `011`...), você pode salvar todas as caixas menos uma, e a que você não salva é arbitrária (pode escolher qualquer uma).
+
+Então a solução gananciosa é, para toda sequência no estilo `01+`, somar à resposta os números de todas as caixas, e depois subtrair o mínimo.
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
