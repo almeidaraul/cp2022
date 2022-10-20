@@ -261,6 +261,20 @@ Remember that you have to "disable" the vertices in already processed SCCs.
 \subsubsection{Floyd}
 Slow and fast (tortoise and hare)
 
+\subsubsection{Combination}
+A combination ${}_nC_k = \binom{n}{k}$ ($n$ \textit{chooses} $k$) refers to selecting $k$ objects from a collection of $n$ where the order of choice doesn't matter.
+
+\textbf{Without repetition:} can't choose an element twice. $\binom{n}{k} = \frac{n!}{r!(n-k)!}$
+
+\textbf{With repetition:} elements may be chosen more than once. $\binom{n}{k} = \frac{(k+n-1)!}{k!(n-1)!}$
+
+\subsubsection{Permutation}
+A permutation ${}_nP_k$ refers to selecting $k$ objects from a collection of $n$ where the order of choice matters.
+
+\textbf{With repetition:} elements may be chosen more than once. ${}_nP_k = n^k$
+
+\textbf{Without repetition:} can't choose an element twice. ${}_nP_k = \frac{n!}{(n-k)!}$
+
 \subsection{Paradigm}
 \subsubsection{Coordinate Compression}
 Normalize vector access; can also be done with map/set but high constant

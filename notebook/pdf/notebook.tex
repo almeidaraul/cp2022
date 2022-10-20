@@ -59,6 +59,37 @@ literate={~} {$\sim$}{1}
 
 \section{Graph}
 
+\subsection{Max Cardinality Bipartite Matching}
+\begin{lstlisting}
+// Status: not tested
+// Source: CP3 (pg. 209)
+// O(VE) time
+
+vector<vector<int>> adj(M);
+vector<int> match(M, -1);
+vector<bool> visited(M);
+
+bool augment(int left) { //match one on the left with one on the right
+	if (visited[left]) return false;
+	visited[left] = true;
+	for (auto right: adj[left])
+		if (match[right] == -1 || augment(match[right])) {
+			match[right] = left;
+			return true;
+		}
+	return false;
+}
+
+//usage
+//(mcbm = V iff there's at least one way to completely match both sides)
+int mcbm = 0; //number of matched vertices
+match.assign(M, -1);
+for (int v = 0; v < ls; ++v) {//ls = size of the left set
+	visited.assign(ls, false);
+	mcbm += augment(v);
+}
+\end{lstlisting}
+
 \subsection{Prim MST}
 \begin{lstlisting}
 // Status: tested (UVA10048)
@@ -95,268 +126,6 @@ void run(int n) {
 		if (!taken[v]) {
 			process(v);
 			run(n);
-		}
-}
-\end{lstlisting}
-
-\subsection{Dijkstra SSSP}
-\begin{lstlisting}
-// Status: tested (CF20C)
-// O((V+E) log V) time, O(V^2) space
-
-using ii = pair<int, int>;
-const int inf = 0x3f3f3f3f;
-vector<vector<ii>> adj(M);
-vector<int> dist(M, inf), par(M, -1);
-
-void dijkstra(int s) {
-	dist[s] = 0;
-	priority_queue<ii, vector<ii>, greater<pair<int, int>>> pq;
-	pq.push(make_pair(0, s));
-	while (!pq.empty()) {
-		int w = pq.top().first;
-		int v = pq.top().second;
-		pq.pop();
-		if (w > dist[v]) continue;
-		for (auto &[d, u]: adj[v])
-			if (dist[v] != inf && dist[v]+d < dist[u]) {
-				par[u] = v;
-				dist[u] = dist[v]+d;
-				pq.push(make_pair(dist[u], u));
-			}
-	}
-}
-\end{lstlisting}
-
-\subsection{Graph Check}
-\begin{lstlisting}
-// Usage: graphCheck(firstVertex, -1) (p stands for parent)
-// O(V+E) time & space
-
-int UNVISITED = -1, EXPLORED = 0, VISITED = 1;
-vector<vector<int>> adj(M);
-vector<int> tin;
-
-void graphCheck(int v, int p) { //vertex, parent
-	tin[v] = EXPLORED;
-	for (auto u: adj[v]) {
-		if (tin[u] == UNVISITED) { //tree edge
-			graphCheck(u, v);
-		} else if (tin[u] == EXPLORED) {
-			if (u == p)
-				; //two way edge u <-> v
-			else
-				; //back edge v -> u
-		} else if (tin[u] == VISITED) {
-			; //forward/cross edge u-v
-		}
-	}
-	tin[v] = VISITED;
-}
-\end{lstlisting}
-
-\subsection{Articulations and Bridges}
-\begin{lstlisting}
-// Usage: dfs(source, -1)
-// Status: not tested
-// O(V+E) time & space
-
-int tk = 0;
-vector<int> tin(M, -1);
-vector<vector<int>> adj(M);
-
-void dfs(int v, int p) {
-	tin[v] = low[v] = tk++;
-	int children = 0;
-	for (auto u: adj[v]) {
-		if (u == p) continue;
-		else if	(tin[u] == -1) {
-			++children;
-			dfs(u, v);
-			if (low[u] >= tin[v] && p != v)
-				; //articulation point
-			if (low[u] > tin[v])
-				; //bridge u-v
-			low[v] = min(low[v], low[u]);
-		} else {
-			low[v] = min(low[v], tin[u]);
-		}
-	}
-}
-\end{lstlisting}
-
-\subsection{Euler Tour}
-\begin{lstlisting}
-// Usage: tour(cyc.begin(), start\_vertex)
-// Status: not tested
-// Source: CP3 (pg. 205)
-// O(E^2) time
-
-list<int> cyc;
-vector<vector<int>> adj(M);
-vector<vector<bool>> traversed(M, vector<bool>(M, false));
-
-//euler tour (list for fast insertion)
-void tour(list<int>::iterator i, int v) {
-	for (auto u: adj[v]) {
-		if (!traversed[v][u]) {
-			traversed[v][u] = true;
-			for (auto t: adj[u])
-				if (t == v && !traversed[u][t]) {
-					traversed[u][t] = true;
-					break;
-				}
-			tour(cyc.insert(i, v), u);
-		}
-	}
-}
-\end{lstlisting}
-
-\subsection{Kahn's topological sort}
-\begin{lstlisting}
-// Status: tested (UVA11060)
-// O(VE) time, O(V+E) space
-
-vector<vector<int>> adj(M);
-vector<int> sorted;
-
-void kahn(int n) {
-	vector<int> indeg(n, 0);
-	vector<bool> valid(n, true);
-	priority_queue<int> pq;
-
-	for (int v = 0; v < n; ++v)
-		for (auto u: adj[v])
-			indeg[u]++;
-	for (int v = 0; v < n; ++v)
-		if (!indeg[v]) pq.push(v);
-
-	while (!pq.empty()) {
-		int v = pq.top(); pq.pop();
-		sorted.push_back(v);
-		valid[v] = false;
-		for (auto u: adj[v])
-			if (valid[u] && !(--indeg[u]))
-				pq.push(u);
-	}
-}
-\end{lstlisting}
-
-\subsection{Max Cardinality Bipartite Matching}
-\begin{lstlisting}
-// Status: not tested
-// Source: CP3 (pg. 209)
-// O(VE) time
-
-vector<vector<int>> adj(M);
-vector<int> match(M, -1);
-vector<bool> visited(M);
-
-bool augment(int left) { //match one on the left with one on the right
-	if (visited[left]) return false;
-	visited[left] = true;
-	for (auto right: adj[left])
-		if (match[right] == -1 || augment(match[right])) {
-			match[right] = left;
-			return true;
-		}
-	return false;
-}
-
-//usage
-//(mcbm = V iff there's at least one way to completely match both sides)
-int mcbm = 0; //number of matched vertices
-match.assign(M, -1);
-for (int v = 0; v < ls; ++v) {//ls = size of the left set
-	visited.assign(ls, false);
-	mcbm += augment(v);
-}
-\end{lstlisting}
-
-\subsection{Lowest Common Ancestor}
-\begin{lstlisting}
-// Status: not tested
-// O(N log N) time, O(N log N) space
-
-//--- binary lifting
-int n, l = ceil(log2(n));
-vector<vector<int>> adj;
-int tk = 0;
-vector<int> tin(n), tout(n);
-vector<vector<int>> up(n, vector<int>(l+1)); // ancestor
-
-void dfs(int v, int p) { // run dfs(root, root) to initialize
-	tin[v] = ++tk;
-	up[v][0] = p;
-	for (int i = 1; i <= l; ++i)
-		up[v][i] = up[up[v][i-1]][i-1];
-	for (int u : adj[v])
-		if (u != p)
-			dfs(u, v);
-	tout[v] = ++tk;
-}
-
-bool ancestor(int v, int u) { // v is ancestor of u
-	return tin[v] <= tin[u] && tout[v] >= tout[u];
-}
-
-int lca(int v, int u) {
-	if (ancestor(v, u)) return v;
-	if (ancestor(u, v)) return u;
-	for (int i = l; i >= 0; --i)
-		if (!ancestor(up[v][i], u))
-			v = up[v][i];
-	return up[v][0];
-}
-
-//--- euler path
-using ii = pair<int, int>;
-vector<ii> t;
-vector<int> idx(n);
-int tk = 1;
-
-void dfs(int v, int d) { // call with dfs(root, 0);
-	for (auto u : adj[v]) {
-		st.update(tk, {d, v});
-		tk++;
-		dfs(u, d+1);
-	}
-	idx[v] = tk;
-	st.update(tk, {d, v});
-	tk++;
-}
-
-int lca(int v, int u) {
-	int l = idx[v], r = idx[u];
-	return st.minquery(l, r).second; // .first is depth
-}
-\end{lstlisting}
-
-\subsection{Tarjan Strongly Connected Component}
-\begin{lstlisting}
-// Usage: Tarjan(N, adj)
-// Status: tested (UVA247, UVA11838)
-// O(V+E) time & space
-
-vector<int> tin(M, -1), low(M, -1);
-vector<vector<int> adj(M);
-stack<int> S;
-int tk = 0;
-
-void dfs(int v) {
-	low[v] = tin[v] = tk++;
-	S.push(v);
-	visited[v] = true;
-	for (auto u: adj[v]) {
-		if (tin[u] == -1)
-			dfs(u);
-		if (visited[u])
-			low[v] = min(low[v], low[u]);
-	}
-	if (low[v] == tin[v])
-		while (true) {
-			int u = S.top(); S.pop(); visited[u] = false;
-			if (u == v) break;
 		}
 }
 \end{lstlisting}
@@ -402,56 +171,6 @@ void kosaraju() {
       // ...process vertices in component
       component.clear();
     }
-}
-\end{lstlisting}
-
-\subsection{Bellman-Ford SSSP}
-\begin{lstlisting}
-// Status: tested (UVA1112, UVA10449)
-// O(VE) time, O(V+E) space
-const int inf = 0x3f3f3f3f;
-vector<vector<pair<int, int>>> adj(M);
-vector<int> dist(M, inf);
-
-void bellmanFord(int n) {
-	for (int i = 0; i < n-1; ++i)
-		for (int v = 0; v < n; ++v)
-			for (auto &[u, w]: adj[v])
-				if (dist[v] != inf)
-					dist[u] = min(dist[u], dist[v]+w);
-}
-
-//check if there are negative cycles
-bool cycle(int n) {
-	bool ans = false;
-	for (int v = 0; v < n; ++v)
-		for (auto &[u, w]: v)
-			ans |= dist[v] != inf && dist[u] > dist[v]+w;
-}
-\end{lstlisting}
-
-\subsection{Kruskal MST}
-\begin{lstlisting}
-// Usage: Kruskal(V, E, edges) (weighted edges)
-// Status: tested (UVA1174)
-// O(E log V) time, O(V+E) space
-
-using iii = pair<int, pair<int, int>>; //weight, two vertices
-vector<iii> edges;
-UnionFind muf;
-
-int kruskal() {
-	int cost = 0;
-	sort(edges.begin(), edges.end());
-	for (auto a: edges) {
-		int w = a.first;
-		pair<int, int> e = a.second;
-		if (!muf.isSameSet(e.first, e.second)) {
-			cost += w;
-			muf.unionSet(e.first, e.second);
-		}
-	}
-	return cost;
 }
 \end{lstlisting}
 
@@ -522,6 +241,258 @@ void mincut(int s, int t) {
 }
 \end{lstlisting}
 
+\subsection{Dijkstra SSSP}
+\begin{lstlisting}
+// Status: tested (CF20C)
+// O((V+E) log V) time, O(V^2) space
+
+using ii = pair<int, int>;
+const int inf = 0x3f3f3f3f;
+vector<vector<ii>> adj(M);
+vector<int> dist(M, inf), par(M, -1);
+
+void dijkstra(int s) {
+	dist[s] = 0;
+	priority_queue<ii, vector<ii>, greater<pair<int, int>>> pq;
+	pq.push(make_pair(0, s));
+	while (!pq.empty()) {
+		int w = pq.top().first;
+		int v = pq.top().second;
+		pq.pop();
+		if (w > dist[v]) continue;
+		for (auto &[d, u]: adj[v])
+			if (dist[v] != inf && dist[v]+d < dist[u]) {
+				par[u] = v;
+				dist[u] = dist[v]+d;
+				pq.push(make_pair(dist[u], u));
+			}
+	}
+}
+\end{lstlisting}
+
+\subsection{Bellman-Ford SSSP}
+\begin{lstlisting}
+// Status: tested (UVA1112, UVA10449)
+// O(VE) time, O(V+E) space
+const int inf = 0x3f3f3f3f;
+vector<vector<pair<int, int>>> adj(M);
+vector<int> dist(M, inf);
+
+void bellmanFord(int n) {
+	for (int i = 0; i < n-1; ++i)
+		for (int v = 0; v < n; ++v)
+			for (auto &[u, w]: adj[v])
+				if (dist[v] != inf)
+					dist[u] = min(dist[u], dist[v]+w);
+}
+
+//check if there are negative cycles
+bool cycle(int n) {
+	bool ans = false;
+	for (int v = 0; v < n; ++v)
+		for (auto &[u, w]: v)
+			ans |= dist[v] != inf && dist[u] > dist[v]+w;
+}
+\end{lstlisting}
+
+\subsection{Articulations and Bridges}
+\begin{lstlisting}
+// Usage: dfs(source, -1)
+// Status: not tested
+// O(V+E) time & space
+
+int tk = 0;
+vector<int> tin(M, -1);
+vector<vector<int>> adj(M);
+
+void dfs(int v, int p) {
+	tin[v] = low[v] = tk++;
+	int children = 0;
+	for (auto u: adj[v]) {
+		if (u == p) continue;
+		else if	(tin[u] == -1) {
+			++children;
+			dfs(u, v);
+			if (low[u] >= tin[v] && p != v)
+				; //articulation point
+			if (low[u] > tin[v])
+				; //bridge u-v
+			low[v] = min(low[v], low[u]);
+		} else {
+			low[v] = min(low[v], tin[u]);
+		}
+	}
+}
+\end{lstlisting}
+
+\subsection{Kahn's topological sort}
+\begin{lstlisting}
+// Status: tested (UVA11060)
+// O(VE) time, O(V+E) space
+
+vector<vector<int>> adj(M);
+vector<int> sorted;
+
+void kahn(int n) {
+	vector<int> indeg(n, 0);
+	vector<bool> valid(n, true);
+	priority_queue<int> pq;
+
+	for (int v = 0; v < n; ++v)
+		for (auto u: adj[v])
+			indeg[u]++;
+	for (int v = 0; v < n; ++v)
+		if (!indeg[v]) pq.push(v);
+
+	while (!pq.empty()) {
+		int v = pq.top(); pq.pop();
+		sorted.push_back(v);
+		valid[v] = false;
+		for (auto u: adj[v])
+			if (valid[u] && !(--indeg[u]))
+				pq.push(u);
+	}
+}
+\end{lstlisting}
+
+\subsection{Euler Tour}
+\begin{lstlisting}
+// Usage: tour(cyc.begin(), start\_vertex)
+// Status: not tested
+// Source: CP3 (pg. 205)
+// O(E^2) time
+
+list<int> cyc;
+vector<vector<int>> adj(M);
+vector<vector<bool>> traversed(M, vector<bool>(M, false));
+
+//euler tour (list for fast insertion)
+void tour(list<int>::iterator i, int v) {
+	for (auto u: adj[v]) {
+		if (!traversed[v][u]) {
+			traversed[v][u] = true;
+			for (auto t: adj[u])
+				if (t == v && !traversed[u][t]) {
+					traversed[u][t] = true;
+					break;
+				}
+			tour(cyc.insert(i, v), u);
+		}
+	}
+}
+\end{lstlisting}
+
+\subsection{Kruskal MST}
+\begin{lstlisting}
+// Usage: Kruskal(V, E, edges) (weighted edges)
+// Status: tested (UVA1174)
+// O(E log V) time, O(V+E) space
+
+using iii = pair<int, pair<int, int>>; //weight, two vertices
+vector<iii> edges;
+UnionFind muf;
+
+int kruskal() {
+	int cost = 0;
+	sort(edges.begin(), edges.end());
+	for (auto a: edges) {
+		int w = a.first;
+		pair<int, int> e = a.second;
+		if (!muf.isSameSet(e.first, e.second)) {
+			cost += w;
+			muf.unionSet(e.first, e.second);
+		}
+	}
+	return cost;
+}
+\end{lstlisting}
+
+\subsection{Lowest Common Ancestor}
+\begin{lstlisting}
+// Status: not tested
+// O(N log N) time, O(N log N) space
+
+//--- binary lifting
+int n, l = ceil(log2(n));
+vector<vector<int>> adj;
+int tk = 0;
+vector<int> tin(n), tout(n);
+vector<vector<int>> up(n, vector<int>(l+1)); // ancestor
+
+void dfs(int v, int p) { // run dfs(root, root) to initialize
+	tin[v] = ++tk;
+	up[v][0] = p;
+	for (int i = 1; i <= l; ++i)
+		up[v][i] = up[up[v][i-1]][i-1];
+	for (int u : adj[v])
+		if (u != p)
+			dfs(u, v);
+	tout[v] = ++tk;
+}
+
+bool ancestor(int v, int u) { // v is ancestor of u
+	return tin[v] <= tin[u] && tout[v] >= tout[u];
+}
+
+int lca(int v, int u) {
+	if (ancestor(v, u)) return v;
+	if (ancestor(u, v)) return u;
+	for (int i = l; i >= 0; --i)
+		if (!ancestor(up[v][i], u))
+			v = up[v][i];
+	return up[v][0];
+}
+
+//--- euler path
+using ii = pair<int, int>;
+vector<ii> t;
+vector<int> idx(n);
+int tk = 1;
+
+void dfs(int v, int d) { // call with dfs(root, 0);
+	for (auto u : adj[v]) {
+		st.update(tk, {d, v});
+		tk++;
+		dfs(u, d+1);
+	}
+	idx[v] = tk;
+	st.update(tk, {d, v});
+	tk++;
+}
+
+int lca(int v, int u) {
+	int l = idx[v], r = idx[u];
+	return st.minquery(l, r).second; // .first is depth
+}
+\end{lstlisting}
+
+\subsection{Graph Check}
+\begin{lstlisting}
+// Usage: graphCheck(firstVertex, -1) (p stands for parent)
+// O(V+E) time & space
+
+int UNVISITED = -1, EXPLORED = 0, VISITED = 1;
+vector<vector<int>> adj(M);
+vector<int> tin;
+
+void graphCheck(int v, int p) { //vertex, parent
+	tin[v] = EXPLORED;
+	for (auto u: adj[v]) {
+		if (tin[u] == UNVISITED) { //tree edge
+			graphCheck(u, v);
+		} else if (tin[u] == EXPLORED) {
+			if (u == p)
+				; //two way edge u <-> v
+			else
+				; //back edge v -> u
+		} else if (tin[u] == VISITED) {
+			; //forward/cross edge u-v
+		}
+	}
+	tin[v] = VISITED;
+}
+\end{lstlisting}
+
 \subsection{Floyd Warshall APSP}
 \begin{lstlisting}
 // Usage: FloydWarshall(n, edges)
@@ -544,66 +515,41 @@ void floydWarshall(int n) {
 }
 \end{lstlisting}
 
+\subsection{Tarjan Strongly Connected Component}
+\begin{lstlisting}
+// Usage: Tarjan(N, adj)
+// Status: tested (UVA247, UVA11838)
+// O(V+E) time & space
+
+vector<int> tin(M, -1), low(M, -1);
+vector<vector<int> adj(M);
+stack<int> S;
+int tk = 0;
+
+void dfs(int v) {
+	low[v] = tin[v] = tk++;
+	S.push(v);
+	visited[v] = true;
+	for (auto u: adj[v]) {
+		if (tin[u] == -1)
+			dfs(u);
+		if (visited[u])
+			low[v] = min(low[v], low[u]);
+	}
+	if (low[v] == tin[v])
+		while (true) {
+			int u = S.top(); S.pop(); visited[u] = false;
+			if (u == v) break;
+		}
+}
+\end{lstlisting}
+
 
 %%%%%%%%%%%%%%%%%%%%
 % Math
 %%%%%%%%%%%%%%%%%%%%
 
 \section{Math}
-
-\subsection{Sieve of Eratosthenes}
-\begin{lstlisting}
-// Status: not tested
-// O(n log log n) time, O(n) space
-
-bitset<11234567> pr;
-vector<int> factors(M, 0);
-vector<int> primes;
-
-void sieve(int n) {
-	pr.set();
-	for (int i = 2; i*i <= n; ++i)
-		if (pr[i]) { //factors[i] == 0
-			primes.push_back(i);
-			for (int p = i*i; p <= n; p += i) {
-				pr[p] = false;
-				factors[p]++;
-			}
-		}
-}
-
-// O(1) for small n, O(sieve_size) else
-bool isPrime(int n) {
-	int sieve_size = 11234567;
-	if (n <= sieve_size) return pr[n];
-	for (auto p: primes) // only works if n <= primes.back()^2
-		if (!(n%p)) return false;
-	return true;
-}
-\end{lstlisting}
-
-\subsection{Prime Factors w/ Optimized Trial Divisions}
-\begin{lstlisting}
-// Status: not tested
-// Source: CP3 (pg. 238)
-// O(pi(sqrt(n))) time, O(n) space
-
-vector<int> primes;
-vector<pair<int, int>> factors;
-
-void pf(int n) {
-	for (auto p: primes) {
-		if (p*p > n) break;
-		int i = 0;
-		while (!(n%p)) {
-			n /= p;
-			i++;
-		}
-		factors.push_back({p, i});
-	}
-	if (n != 1) factors.push_back({n, 1});
-}
-\end{lstlisting}
 
 \subsection{Extended Euclid for solving Linear Diophantine Equations}
 \begin{lstlisting}
@@ -631,6 +577,29 @@ void solve(int a, int b, int c, int i) { //i solutions
 		x += b/d;
 		y -= a/d;
 	} while (--i);
+}
+\end{lstlisting}
+
+\subsection{Prime Factors w/ Optimized Trial Divisions}
+\begin{lstlisting}
+// Status: not tested
+// Source: CP3 (pg. 238)
+// O(pi(sqrt(n))) time, O(n) space
+
+vector<int> primes;
+vector<pair<int, int>> factors;
+
+void pf(int n) {
+	for (auto p: primes) {
+		if (p*p > n) break;
+		int i = 0;
+		while (!(n%p)) {
+			n /= p;
+			i++;
+		}
+		factors.push_back({p, i});
+	}
+	if (n != 1) factors.push_back({n, 1});
 }
 \end{lstlisting}
 
@@ -663,6 +632,37 @@ int findCycle(int x) {
 }
 \end{lstlisting}
 
+\subsection{Sieve of Eratosthenes}
+\begin{lstlisting}
+// Status: not tested
+// O(n log log n) time, O(n) space
+
+bitset<11234567> pr;
+vector<int> factors(M, 0);
+vector<int> primes;
+
+void sieve(int n) {
+	pr.set();
+	for (int i = 2; i*i <= n; ++i)
+		if (pr[i]) { //factors[i] == 0
+			primes.push_back(i);
+			for (int p = i*i; p <= n; p += i) {
+				pr[p] = false;
+				factors[p]++;
+			}
+		}
+}
+
+// O(1) for small n, O(sieve_size) else
+bool isPrime(int n) {
+	int sieve_size = 11234567;
+	if (n <= sieve_size) return pr[n];
+	for (auto p: primes) // only works if n <= primes.back()^2
+		if (!(n%p)) return false;
+	return true;
+}
+\end{lstlisting}
+
 
 %%%%%%%%%%%%%%%%%%%%
 % Paradigm
@@ -683,31 +683,6 @@ vals.erase(unique(vals.begin(), vals.end()), vals.end());
 for (int i = 0; i < n; ++i) {
 	int idx = lower_bound(vals.begin(), vals.end(), v[i]) - vals.begin();
 	cv[i] = idx;
-}
-\end{lstlisting}
-
-\subsection{128 Bit Integers}
-\begin{lstlisting}
-// Status: not tested
-// Source: GEMA (YouTube)
-
-// cout, cerr, etc; pode dar over/underflow
-ostream& operator<<(ostream& out, __int128 x) {
-    if (x == 0) return out << 0;
-    string s; bool sig = x < 0; x = x < 0 ? -x : x;
-    while(x > 0) s += x % 10 + '0', x /= 10;
-    if (sig) s += '-';
-    reverse(s.begin(), s.end());
-    return out << s;
-}
-
-// cin, etc; pode dar over/underflow
-istream& operator>>(istream& in, __int128& x) {
-    char c, neg = 0; while(isspace(c = in.get()));
-    if(!isdigit(c)) neg = (c == '-'), x = 0;
-    else x = c - '0';
-    while(isdigit(c = in.get())) x = (x << 3) + (x << 1) - '0' + c;
-    x = neg ? -x : x; return in;
 }
 \end{lstlisting}
 
@@ -734,6 +709,31 @@ for (int b = n/2; b > 0; b /= 2)
 		k += b;
 if (array[k] == x)
 	// found
+\end{lstlisting}
+
+\subsection{128 Bit Integers}
+\begin{lstlisting}
+// Status: not tested
+// Source: GEMA (YouTube)
+
+// cout, cerr, etc; pode dar over/underflow
+ostream& operator<<(ostream& out, __int128 x) {
+    if (x == 0) return out << 0;
+    string s; bool sig = x < 0; x = x < 0 ? -x : x;
+    while(x > 0) s += x % 10 + '0', x /= 10;
+    if (sig) s += '-';
+    reverse(s.begin(), s.end());
+    return out << s;
+}
+
+// cin, etc; pode dar over/underflow
+istream& operator>>(istream& in, __int128& x) {
+    char c, neg = 0; while(isspace(c = in.get()));
+    if(!isdigit(c)) neg = (c == '-'), x = 0;
+    else x = c - '0';
+    while(isdigit(c = in.get())) x = (x << 3) + (x << 1) - '0' + c;
+    x = neg ? -x : x; return in;
+}
 \end{lstlisting}
 
 
@@ -770,44 +770,6 @@ vector<int> prefix(string s) {
 %%%%%%%%%%%%%%%%%%%%
 
 \section{Structure}
-
-\subsection{Merge/Disjoint Union-Find}
-\begin{lstlisting}
-// Usage: UnionFind(N);
-// Status: tested (UVA11503)
-// O(Ackermann * N) time, O(N) space
-
-struct UnionFind {
-	int N;
-	vi par, rk, count;
-
-	UnionFind(int N) : N(N), par(N), rk(N, 0), count(N, 1) {
-		rep(i, 0, N) par[i] = i;
-	}
-
-	int findSet(int i) {
-		return par[i] == i ? i : (par[i] = findSet(par[i]));
-	}
-
-	int unionSet(int a, int b) {
-		int x = findSet(a), y = findSet(b);
-		if (x != y)
-			count[x] = count[y] = (count[x]+count[y]);
-		if (rk[x] < rk[y])
-			par[x] = y;
-		else {
-			par[y] = x;
-			if (rk[x] == rk[y])
-				rk[x]++;
-		}
-		return count[x];
-	}
-
-	bool isSameSet(int i, int j) {
-		return findSet(i) == findSet(j);
-	}
-};
-\end{lstlisting}
 
 \subsection{Bottom-Up Segment Tree}
 \begin{lstlisting}
@@ -846,6 +808,44 @@ struct SegTree {
     for (k /= 2; k >= 1; k /= 2)
       tree[k] = tree[k<<1] + tree[(k<<1) + 1];
   }
+};
+\end{lstlisting}
+
+\subsection{Merge/Disjoint Union-Find}
+\begin{lstlisting}
+// Usage: UnionFind(N);
+// Status: tested (UVA11503)
+// O(Ackermann * N) time, O(N) space
+
+struct UnionFind {
+	int N;
+	vi par, rk, count;
+
+	UnionFind(int N) : N(N), par(N), rk(N, 0), count(N, 1) {
+		rep(i, 0, N) par[i] = i;
+	}
+
+	int findSet(int i) {
+		return par[i] == i ? i : (par[i] = findSet(par[i]));
+	}
+
+	int unionSet(int a, int b) {
+		int x = findSet(a), y = findSet(b);
+		if (x != y)
+			count[x] = count[y] = (count[x]+count[y]);
+		if (rk[x] < rk[y])
+			par[x] = y;
+		else {
+			par[y] = x;
+			if (rk[x] == rk[y])
+				rk[x]++;
+		}
+		return count[x];
+	}
+
+	bool isSameSet(int i, int j) {
+		return findSet(i) == findSet(j);
+	}
 };
 \end{lstlisting}
 
@@ -918,20 +918,6 @@ struct SegTree {
 
 \section{Extra}
 
-\subsection{C++ structs}
-\begin{lstlisting}
-struct example {
-  vector<int> a;
-  vector<bool> b = vector<bool>(5); // default value
-  int i;
-  example(int _i) : a(_i), i(_i) {};
-  bool operator< (example& e) { return i < e.i; }
-}
-
-example e = example(3);
-example f(3);
-\end{lstlisting}
-
 \subsection{Bashrc}
 \begin{lstlisting}
 xmodmap -e 'clear lock' -e 'keycode 66=Escape' # caps -> esc
@@ -958,11 +944,39 @@ clip () {
 }
 \end{lstlisting}
 
+\subsection{C++ Template}
+\begin{lstlisting}
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+}
+\end{lstlisting}
+
 \subsection{Vim}
 \begin{lstlisting}
 set et ts=2 sw=2 ai si cindent sta
 set is tm=50 nu noeb sm "cul
 sy on
+\end{lstlisting}
+
+\subsection{Stress}
+\begin{lstlisting}
+for (( I=0; I < 5; I++ )); do
+  ./gen $I > a.in
+  ./brute < a.in > expected.txt
+  ./a.out < a.in > output.txt
+  if diff -u expected.txt output.txt; then : ; else
+    echo "--> input:"; cat a.in
+    echo "--> expected output:"; cat expected.txt
+    echo "--> received output:"; cat output.txt
+    break
+  fi
+  echo -n .
+done
 \end{lstlisting}
 
 \subsection{Generator}
@@ -981,32 +995,18 @@ int main(int argc, char *argv[]) {
 }
 \end{lstlisting}
 
-\subsection{C++ Template}
+\subsection{C++ structs}
 \begin{lstlisting}
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-
-int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+struct example {
+  vector<int> a;
+  vector<bool> b = vector<bool>(5); // default value
+  int i;
+  example(int _i) : a(_i), i(_i) {};
+  bool operator< (example& e) { return i < e.i; }
 }
-\end{lstlisting}
 
-\subsection{Stress}
-\begin{lstlisting}
-for (( I=0; I < 5; I++ )); do
-  ./gen $I > a.in
-  ./brute < a.in > expected.txt
-  ./a.out < a.in > output.txt
-  if diff -u expected.txt output.txt; then : ; else
-    echo "--> input:"; cat a.in
-    echo "--> expected output:"; cat expected.txt
-    echo "--> received output:"; cat output.txt
-    break
-  fi
-  echo -n .
-done
+example e = example(3);
+example f(3);
 \end{lstlisting}
 
 \pagebreak
