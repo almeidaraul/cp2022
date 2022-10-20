@@ -118,6 +118,24 @@ Então a solução gananciosa é, para toda sequência no estilo `01+`, somar à
 
 ---
 
+**[A Recursive Function](atcoder/abc273/a.cpp)** - [AtCoder](https://atcoder.jp/contests/abc273) (20/10/22) [factorial]
+
+Só computar fatorial <= 10
+
+---
+
+**[Broken Rounding](atcoder/abc273/b.cpp)** - [AtCoder](https://atcoder.jp/contests/abc273) (20/10/22) [ceil, floor]
+
+Pra cada potência P de 10, escolhe entre teto(X/P) e chão(X/P) (pega o mais próximo e, se forem iguais, pega o teto).
+
+---
+
+**[(K+1)-th Largest Number](atcoder/abc273/c.cpp)** - [AtCoder](https://atcoder.jp/contests/abc273) (20/10/22) [coordinate compression]
+
+Faz compressão de coordenadas e vê quantas coordenadas tem que são maiores que a coordenada de cada elemento, aí guarda num vetor de respostas
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
@@ -138,6 +156,7 @@ problem | type | Comments/idea/what I've tried
 ~[Delivering Pizza](https://codeforces.com/gym/103274/problem/D)~ | ~upsolve~ | ~treino time~
 [Componentes Conexas Atacam Novamente](https://codeforces.com/gym/102020/problem/C) | upsolve | segtree de dsu
 [Chimambu](https://www.beecrowd.com.br/judge/pt/challenges/view/685/3) | upsolve | maratona fase zero 2022
+[LRUD Instructions](https://atcoder.jp/contests/abc273/tasks/abc273_d) | upsolve | abc 273
 
 # To-do Contests
 **Focusing on atcoder beginner contests, codeforces educational rounds and (most of all) ICPC [sub]regionals**
