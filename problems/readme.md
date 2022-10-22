@@ -136,6 +136,18 @@ Faz compressão de coordenadas e vê quantas coordenadas tem que são maiores qu
 
 ---
 
+**[LRUD Instructions](atcoder/abc273/d.cpp)** - [AtCoder](https://atcoder.jp/contests/abc273) (22/10/22) [grid, binary search]
+
+(Explicando pra linhas + instruções L e R e aí no caso de colunas + U/D é análogo)
+
+Pra cada linha que aparece, guarda um set com as colunas que tem quadrado nessa linha (i.e., faz um map[linha] = set<colunas que tem quadrado nessa linha>)
+
+Numa instrução `dl`, faz uma busca binária pra achar a maior coluna menor que a atual (nessa linha) e a menor coluna maior que a atual (nessa linha). Lembre de lidar com o caso em que não tem quadrados nessa linha ou que a coluna atual é a maior/menor de todas.
+
+A partir das duas colunas que você achou com busca binária, define qual a maior e a menor colunas pra as quais vc poderia ir (i.e., se `l` fosse infinito). Aí é só comparar esses valores com o que vc realmente tem que ir (i.e., `l` passos pra uma direção).
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
@@ -145,27 +157,47 @@ Preferably with hints first, e.g.,
 - **Hint 2:** (hint)
 (and then the full solution)
 
-
-# To-do Problems
-**Focusing on CSES**
-problem | type | Comments/idea/what I've tried
----|---|---
-[Decoration](https://codeforces.com/gym/103081/problem/G) | upsolve | SWERC 2020-2021, treino time
-[Safe Distance](https://codeforces.com/gym/103081/problem/C) | upsolve | SWERC 2020-21, treino time
-[Consulta e Alteração](https://www.beecrowd.com.br/judge/pt/problems/view/3306?) | upsolve | lazy segtree com gcd
-~[Delivering Pizza](https://codeforces.com/gym/103274/problem/D)~ | ~upsolve~ | ~treino time~
-[Componentes Conexas Atacam Novamente](https://codeforces.com/gym/102020/problem/C) | upsolve | segtree de dsu
-[Chimambu](https://www.beecrowd.com.br/judge/pt/challenges/view/685/3) | upsolve | maratona fase zero 2022
-[LRUD Instructions](https://atcoder.jp/contests/abc273/tasks/abc273_d) | upsolve | abc 273
-
 # To-do Contests
-**Focusing on atcoder beginner contests, codeforces educational rounds and (most of all) ICPC [sub]regionals**
+**Focusing on CSES, atcoder beginner contests, codeforces educational rounds and (most of all) ICPC [sub]regionals**
 
-contest | notes
+**[2022-2023 ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/103960)**
+
+Problem | Status
 ---|---
-[2022-2023 ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/103960) | já fiz alguns mas nem todos, meio upsolve meio to solve
-[FASE ZERO DA MARATONA DE PROGRAMAÇÃO DA SBC](https://www.beecrowd.com.br/judge/pt/contests/view/685) | já fiz alguns mas nem todos, meio upsolve meio to solve
-[2020-2021 ACM-ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/102861) | já fiz algumas
+A | 
+B | 
+C |
+D |
+E |
+F |
+G |
+H |
+I |
+J |
+K |
+L |
+M |
+N | AC
+
+**[2020-2021 ACM-ICPC Brazil Subregional Programming Contest](https://codeforces.com/gym/102861)**
+
+Problem | Status
+---|---
+A | AC
+B | AC
+C |
+D |
+E |
+F | AC
+G | AC
+H |
+I |
+J |
+K |
+L | AC
+M |
+N |
+O |
 
 # To-do Notebook
 This is here because all the other to-do lists are here. Content to study/add to notebook/record an explanation
