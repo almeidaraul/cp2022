@@ -148,6 +148,20 @@ A partir das duas colunas que você achou com busca binária, define qual a maio
 
 ---
 
+**[Number Spiral](cses/number_spiral.cpp)** - [CSES](https://cses.fi/problemset/task/1071/) (28/10/22) [grid, arithmetic]
+
+Pense na matriz como tendo vários níveis. O primeiro tem só o valor 1, o segundo tem os valores de 2 a 4, o terceiro de 5 a 9, e por aí vai.
+
+Perceba que antes do i-ésimo nível temos `(i-1)*(i-1)` valores (então começamos em `(i-1)*(i-1)+1`), porque a submatriz que inclui todos os níveis anteriores tem dimensões `(i-1)` por `(i-1)`.
+
+O nível de uma coordenada corresponde ao máximo entre x e y. Começamos a resposta pelos valores da submatriz "anterior", descrita acima.
+
+Se o nível i é ímpar e a coordenada buscada está acima ou na diagonal (`j >= i`), ou se i é par e a coordenada está abaixo ou na diagonal (`j <= i`), então devemos incluir na soma os valores do "início" do nível até o "meio" (a diagonal). Isto corresponde ao valor de i. Neste caso, se o menor valor entre x e y for menor que i, adicionamos à resposta a distância entre ele e a diagonal (`i - min(x, y)`).
+
+Caso contrário, nossa coordenada está entre o início do nível até o meio, então simplesmente adicionamos à resposta o valor `min(x, y)`.
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
