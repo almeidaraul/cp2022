@@ -162,6 +162,24 @@ Caso contrário, nossa coordenada está entre o início do nível até o meio, e
 
 ---
 
+**[Find Takahashi](atcoder/abc275/a.cpp)** - [AtCoder](https://atcoder.jp/contests/abc275) (29/10/22) [ad hoc]
+
+Salva todos os valores em um vetor, depois acha o índice do máximo com um `for`
+
+---
+
+**[ABC-DEF](atcoder/abc275/b.cpp)** - [AtCoder](https://atcoder.jp/contests/abc275) (29/10/22) [modulo arithmetic]
+
+Computa todo em módulo 998244353
+
+---
+
+**[Yet Another Recursive Function](atcoder/abc275/d.cpp)** - [AtCoder](https://atcoder.jp/contests/abc275) (29/10/22) [memoization]
+
+Faz memoização dos valores da função (são menos de N / log²(N), se vc olhar o tamanho da árvore de recursão)
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
