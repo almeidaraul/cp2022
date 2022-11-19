@@ -180,6 +180,12 @@ Faz memoização dos valores da função (são menos de N / log²(N), se vc olha
 
 ---
 
+**[Two Sets](cses/two_sets.cpp)** - [CSES](https://cses.fi/problemset/task/1092/) (19/11/22) [greedy, number theory]
+
+Seja S a soma de todos os inteiros de 1 a N. Basta de maneira gulosa construir o primeiro conjunto de maneira que sua soma seja S/2, e necessariamente os números não construídos formarão o segundo conjunto. Cuidado com long long
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
