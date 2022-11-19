@@ -186,6 +186,32 @@ Seja S a soma de todos os inteiros de 1 a N. Basta de maneira gulosa construir o
 
 ---
 
+**[Shift](atcoder/abc278/a.cpp)** - [AtCoder](https://atcoder.jp/contests/abc278/tasks/abc278_a) (19/11/22) [adhoc]
+
+Imprime os números A[k:] e depois k 0s
+
+---
+
+**[Misjudge the Time](atcoder/abc278/b.cpp)** - [AtCoder](https://atcoder.jp/contests/abc278/tasks/abc278_b) (19/11/22) [adhoc]
+
+Troca os números pra ver se é válido; passa por todos os horários do dia a partir do H:M
+
+---
+
+**[FF](atcoder/abc278/c.cpp)** - [AtCoder](https://atcoder.jp/contests/abc278/tasks/abc278_c) (19/11/22) [implementation]
+
+Guarda um map usuario -> set(usuarios que ele segue).
+
+---
+
+**[All Assign Point Add](atcoder/abc278/c.cpp)** - [AtCoder](https://atcoder.jp/contests/abc278/tasks/abc278_d) (19/11/22) [ad hoc]
+
+Faz uma lookup table.
+
+Antes da primeira query do tipo 1, todos os valores são guardados normal, e incrementados normal. Depois, eles viram 0 e você só guarda as diferenças (query tipo 2), mas precisa saber em que momento (query) foi feita uma alteração pra saber se ela vale ou não (na hora de acumular incrementos ou imprimir a resposta). Por fim, guarda qual o último valor das queries tipo 1 e quando foi atribuído.
+
+---
+
 **[Problem name](readme.md)** - [link to problem - judge name](readme.md) (dd/mm/yy) [topics, separated, by, commas]
 
 Solution + Takeaways/Comments/Analysis/Resources
